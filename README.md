@@ -1,4 +1,4 @@
-# Konnect
+# EduFunder
 
 ## Project setup
 At the root directory, run `npm install` for server side dependencies
