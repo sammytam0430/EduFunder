@@ -3,6 +3,8 @@ import Router from "vue-router";
 import Landing from "@/views/Landing.vue";
 import SignUpModal from "@/components/SignUpModal.vue";
 import LogInModal from "@/components/LogInModal.vue";
+import studentProfile from "@/views/studentProfile.vue";
+
 Vue.use(Router);
 
 export default new Router({
@@ -38,8 +40,13 @@ export default new Router({
             showSignUp: false,
             showLogIn: true
           }
-        }
-      ]
-    }
+        },
+        ]
+    },
+    {
+      path: "/hello",
+      name: "studentProfile",
+      component: studentProfile
+    }  
   ]
 });

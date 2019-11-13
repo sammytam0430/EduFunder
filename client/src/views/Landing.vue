@@ -137,9 +137,9 @@
           <b-col lg="7">
             <div id="user-type-btn">
             <h2>Create Account</h2>
-            <h5>Are you a student or a donar?</h5>
+            <h5>Are you a student or a donor?</h5>
             <b-button variant="outline-dark" v-on:click="student" id="studentbtn">Student</b-button>
-            <b-button variant="outline-dark" v-on:click="donar" id="donarbtn">Donar</b-button>
+            <b-button variant="outline-dark" v-on:click="donor" id="donorbtn">Donor</b-button>
             </div>
             <template>
               <b-container fluid>
@@ -210,26 +210,20 @@ export default {
   methods: {
     student: function(){
       document.getElementById("studentbtn").style.backgroundColor = "rgb(211,211,211)";
-      document.getElementById("donarbtn").style.backgroundColor = "white";
+      document.getElementById("donorbtn").style.backgroundColor = "white";
       document.getElementsByClassName("col-sm-3")[5].style.display = "none";
       document.getElementsByClassName("col-sm-6")[5].style.display = "none";
       document.getElementsByClassName("col-sm-3")[4].style.display = "";
       document.getElementsByClassName("col-sm-6")[4].style.display = "";
     },
-    donar: function(){
+    donor: function(){
       document.getElementById("studentbtn").style.backgroundColor = "white";
-      document.getElementById("donarbtn").style.backgroundColor = "rgb(211,211,211)";
+      document.getElementById("donorbtn").style.backgroundColor = "rgb(211,211,211)";
       document.getElementsByClassName("col-sm-3")[4].style.display = "none";
       document.getElementsByClassName("col-sm-6")[4].style.display = "none";
       document.getElementsByClassName("col-sm-3")[5].style.display = "";
       document.getElementsByClassName("col-sm-6")[5].style.display = "";
-    },
-    onSlideStart(slide) {
-        this.sliding = true
-      },
-      onSlideEnd(slide) {
-        this.sliding = false
-      }
+    }
   }
 };
 </script>
@@ -355,7 +349,7 @@ export default {
    margin-right: 5%;
    margin-top: 2%;
  }
- #donarbtn{
+ #donorbtn{
    margin-top: 2%;
  }
  .col-sm-3{

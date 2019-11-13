@@ -5,6 +5,19 @@
       :variant="response.success ? 'success' : 'danger'"
     >{{ response.message }}</b-alert>
     <b-form @submit.prevent="createAccount">
+      <b-container>
+        <b-form-row>
+          <b-col>
+            <div class="user-type">
+              <h5>Are you a student or a donor?</h5>
+              <div class="user-type-btn">
+                <b-button variant="outline-dark" v-on:click="student">Student</b-button>
+                <b-button variant="outline-dark" v-on:click="donor">Donor</b-button>
+            </div>
+            </div>
+          </b-col>
+        </b-form-row>
+      </b-container>
       <b-container class="px-0">
         <b-form-row>
           <b-col>
@@ -19,7 +32,7 @@
           </b-col>
         </b-form-row>
       </b-container>
-      <b-form-group id="email-group" label="School Email" label-for="email">
+      <b-form-group id="email-group" label="Email" label-for="email">
         <b-form-input
           id="email"
           v-model="signup.email"
@@ -28,8 +41,9 @@
           required
           placeholder="example@my.bcit.ca"
         ></b-form-input>
+        
       </b-form-group>
-      <b-form-group
+      <!-- <b-form-group
         id="prefEmail-group"
         label="Preferred Email"
         label-for="prefEmail"
@@ -41,7 +55,7 @@
           type="email"
           placeholder="example@gmail.com"
         ></b-form-input>
-      </b-form-group>
+      </b-form-group> -->
       <b-form-group id="password-group" label="Password" label-for="password">
         <b-form-input id="password" v-model="signup.password" type="password" required></b-form-input>
       </b-form-group>
@@ -94,6 +108,22 @@ export default {
         this.showAlert = true;
       }
     },
+    student: function(){
+      document.getElementById("studentbtn").style.backgroundColor = "rgb(211,211,211)";
+      document.getElementById("donorbtn").style.backgroundColor = "white";
+      document.getElementsByClassName("col-sm-3")[5].style.display = "none";
+      document.getElementsByClassName("col-sm-6")[5].style.display = "none";
+      document.getElementsByClassName("col-sm-3")[4].style.display = "";
+      document.getElementsByClassName("col-sm-6")[4].style.display = "";
+    },
+    donor: function(){
+      document.getElementById("studentbtn").style.backgroundColor = "white";
+      document.getElementById("donorbtn").style.backgroundColor = "rgb(211,211,211)";
+      document.getElementsByClassName("col-sm-3")[4].style.display = "none";
+      document.getElementsByClassName("col-sm-6")[4].style.display = "none";
+      document.getElementsByClassName("col-sm-3")[5].style.display = "";
+      document.getElementsByClassName("col-sm-6")[5].style.display = "";
+    },
     // event handler on modal close
     close() {
       if (this.$route.path !== "/login") {
@@ -103,3 +133,25 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+
+.user-type-btn{
+  margin-left: 26%;
+}
+
+.user-type-btn button{
+  margin: 4%;
+}
+
+.user-type h5{
+   text-align:center;
+   font-size: 16px;
+   font-weight: 400;
+   line-height: 1.8em;
+   color: black;
+}
+</style>
