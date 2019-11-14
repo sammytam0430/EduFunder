@@ -1,5 +1,5 @@
 <template>
-  <b-navbar :class="scrolled ? 'scrolled' : 'normal'" toggleable="md" type="light" variant="light" sticky>
+  <b-navbar :class="scrolled ? 'scrolled' : 'normal'" toggleable="md" type="light" variant="light">
     <b-navbar-brand :to="show ? '/dashboard' : '/'">
       <img class="mr-n4" src="../assets/logo.png" alt="K">
     </b-navbar-brand>
