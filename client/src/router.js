@@ -3,7 +3,12 @@ import Router from "vue-router";
 import Landing from "@/views/Landing.vue";
 import SignUpModal from "@/components/SignUpModal.vue";
 import LogInModal from "@/components/LogInModal.vue";
+<<<<<<< HEAD
 import studentProfile from "@/views/studentProfile.vue";
+=======
+import ProfileDonor from "@/views/ProfileDonor.vue";
+import ScholarshipForm from "@/views/ScholarshipForm.vue";
+>>>>>>> 1fbca98afee2fa70cd89edaeeaa18850d0bd251c
 
 Vue.use(Router);
 
@@ -40,6 +45,7 @@ export default new Router({
             showSignUp: false,
             showLogIn: true
           }
+<<<<<<< HEAD
         },
         ]
     },
@@ -48,5 +54,20 @@ export default new Router({
       name: "studentProfile",
       component: studentProfile
     }  
+=======
+        }
+      ]
+    }, 
+    {
+      path: "/ProfileD",
+      name: "ProfileDonor",
+      component: ProfileDonor
+    },
+    {
+      path: "/ScholarshipForm",
+      name: "ScholarshipForm",
+      component: ScholarshipForm
+    }
+>>>>>>> 1fbca98afee2fa70cd89edaeeaa18850d0bd251c
   ]
 });
