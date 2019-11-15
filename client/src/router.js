@@ -4,6 +4,8 @@ import Landing from "@/views/Landing.vue";
 import SignUpModal from "@/components/SignUpModal.vue";
 import LogInModal from "@/components/LogInModal.vue";
 import studentProfile from "@/views/studentProfile.vue";
+import ProfileDonor from "@/views/ProfileDonor.vue";
+import ScholarshipForm from "@/views/ScholarshipForm.vue";
 
 Vue.use(Router);
 
@@ -47,6 +49,16 @@ export default new Router({
       path: "/hello",
       name: "studentProfile",
       component: studentProfile
-    }  
+    }, 
+    {
+      path: "/ProfileD",
+      name: "ProfileDonor",
+      component: ProfileDonor
+    },
+    {
+      path: "/ScholarshipForm",
+      name: "ScholarshipForm",
+      component: ScholarshipForm
+    }
   ]
 });
