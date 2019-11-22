@@ -6,6 +6,8 @@ import LogInModal from "@/components/LogInModal.vue";
 import studentProfile from "@/views/studentProfile.vue";
 import ProfileDonor from "@/views/ProfileDonor.vue";
 import ScholarshipForm from "@/views/ScholarshipForm.vue";
+import studentCampaign from "@/views/studentCampaign.vue";
+import campaignGallery from "@/views/campaignGallery.vue";
 
 Vue.use(Router);
 
@@ -46,7 +48,7 @@ export default new Router({
         ]
     },
     {
-      path: "/hello",
+      path: "/studentP",
       name: "studentProfile",
       component: studentProfile
     }, 
@@ -59,6 +61,16 @@ export default new Router({
       path: "/ScholarshipForm",
       name: "ScholarshipForm",
       component: ScholarshipForm
+    },
+    {
+      path: "/CampaignForm",
+      name: "StudentCampaign",
+      component: studentCampaign
+    },
+    {
+      path: "/CampaignGallery",
+      name: "campaignGallery",
+      component: campaignGallery
     }
   ]
 });

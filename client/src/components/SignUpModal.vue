@@ -11,8 +11,8 @@
             <div class="user-type">
               <h5>Are you a student or a donor?</h5>
               <div class="user-type-btn">
-                <b-button variant="outline-dark" v-on:click="student">Student</b-button>
-                <b-button variant="outline-dark" v-on:click="donor">Donor</b-button>
+                <b-button :variant="b1" v-on:click="student" id="studentbtn">Student</b-button>
+                <b-button :variant="b2" v-on:click="donor" id="donorbtn">Donor</b-button>
             </div>
             </div>
           </b-col>
@@ -79,6 +79,8 @@ export default {
   name: "SignUpModal",
   data() {
     return {
+      b1: "outline-dark",
+      b2: "outline-dark",
       response: {
         success: false,
         message: {}
@@ -109,20 +111,15 @@ export default {
       }
     },
     student: function(){
-      document.getElementById("studentbtn").style.backgroundColor = "rgb(211,211,211)";
-      document.getElementById("donorbtn").style.backgroundColor = "white";
-      document.getElementsByClassName("col-sm-3")[5].style.display = "none";
-      document.getElementsByClassName("col-sm-6")[5].style.display = "none";
-      document.getElementsByClassName("col-sm-3")[4].style.display = "";
-      document.getElementsByClassName("col-sm-6")[4].style.display = "";
+
+      this.b1 = "dark";
+      this.b2 = "outline-dark";
+      
     },
     donor: function(){
-      document.getElementById("studentbtn").style.backgroundColor = "white";
-      document.getElementById("donorbtn").style.backgroundColor = "rgb(211,211,211)";
-      document.getElementsByClassName("col-sm-3")[4].style.display = "none";
-      document.getElementsByClassName("col-sm-6")[4].style.display = "none";
-      document.getElementsByClassName("col-sm-3")[5].style.display = "";
-      document.getElementsByClassName("col-sm-6")[5].style.display = "";
+      
+      this.b2 = "dark";
+      this.b1 = "outline-dark";
     },
     // event handler on modal close
     close() {

@@ -9,30 +9,36 @@
     <b-container fluid >
     <div class="legend">Basic info</div>
     <div>
-    <!-- <b-row>
-      <div class="legend">Basic info</div>
-    </b-row> -->
-    <b-row class="text-right"> 
-      <b-col sm="1">
-      <label ><code>I am a(?): </code></label>
-      </b-col>
-      <b-col sm="3">
-        <font-awesome-icon icon="coffee" />
-        <div class="options">
-          
-        <b-form-select v-model="selected" :options="options"></b-form-select>
+    <!-- <b-form @submit.stop.prevent="onSubmit">
+      <b-form-group id="example-input-group-1" label="Name" label-for="example-input-1">
+        <b-form-input
+          id="example-input-1"
+          name="example-input-1"
+          v-model="$v.form.name.$model"
+          :state="$v.form.name.$dirty ? !$v.form.name.$error : null"
+          aria-describedby="input-1-live-feedback"
+        ></b-form-input>
 
-        </div>
-      </b-col>
-    </b-row>
-
+        <b-form-invalid-feedback id="input-1-live-feedback">
+          This is a required field and must be at least 3 characters.
+        </b-form-invalid-feedback>
+      </b-form-group> -->
     </div>
     <b-row class="my-4 text-right" v-for="type in types" :key="type">
+
       <b-col sm="1">
         <label :for="`type-${type}`"> <code>{{ type }}</code>:</label>
       </b-col>
+
       <b-col sm="3">
-        <b-form-input :id="`type-${type}`" :type="type"></b-form-input>
+        <b-form-input :id="`type-${type}`" :type="type"
+          v-model="$v.form.name.$model"
+          :state="$v.form.name.$dirty ? !$v.form.name.$error : null"
+          aria-describedby="input-1-live-feedback"></b-form-input>
+
+          <b-form-invalid-feedback id="input-1-live-feedback">
+          This is a required field and must be at least 3 characters.
+        </b-form-invalid-feedback>
       </b-col>
     </b-row>
     <b-row class="my-2 text-right">
@@ -40,6 +46,7 @@
         <label><code>Birthday:</code></label>
       </b-col>
       <b-col sm="3">
+        
         <b-form-input id=type-date type="date"></b-form-input>
       </b-col>
     </b-row>
@@ -72,7 +79,7 @@
         <label><code>Coutnry of Citizenship: </code></label>
       </b-col>
       <b-col sm="2">
-        <b-form-input id=Country placeholder="Country" v-b-tooltip.hover title="Tooltip directive content"></b-form-input>
+        <b-form-input id=Country placeholder="Country" v-b-tooltip.hover title="Tooltip directive content" required></b-form-input>
       </b-col>
     </b-row>
     <b-row class="my-4">
@@ -112,7 +119,7 @@
       </b-col>
       <b-col sm="3">
         <div class="options">
-        <b-form-input v-model="selected" :options="options"></b-form-input>
+        <b-form-input></b-form-input>
         </div>
       </b-col>
     </b-row>
@@ -120,26 +127,14 @@
       <b-col sm="2">
       <label><code>Graduation Date </code></label>
       </b-col>
-      <b-col md="1">
-      <div class="months">
-        <b-form-select v-model="selected" :options="months"></b-form-select>
-      </div>
-      </b-col>
-      <b-col sm="1">
-      <div class="years">
-        <b-form-select v-model="selected" :options="years"></b-form-select>
-      </div>
-      </b-col>
+      <monthYearDD/>
     </b-row>
+    
     <b-row class="my-4 text-right">
       <b-col sm="2">
       <label><code>Academic Average</code></label>
       </b-col>
-      <b-col sm="2">
-      <div class="grades">
-        <b-form-select v-model="selected" :options="grades"></b-form-select>
-      </div>
-      </b-col>
+      <averageDD/>
     </b-row>
     <div class="legend1">Post-Secondary eduation</div>
     <b-row class="my-4">
@@ -148,7 +143,7 @@
       </b-col>
       <b-col sm="3">
         <div class="options">
-        <b-form-input v-model="selected" :options="options"></b-form-input>
+        <b-form-input></b-form-input>
         </div>
       </b-col>
     </b-row>
@@ -156,26 +151,13 @@
       <b-col sm="2">
       <label><code>Graduation Date </code></label>
       </b-col>
-      <b-col md="1">
-      <div class="months">
-        <b-form-select v-model="selected" :options="months"></b-form-select>
-      </div>
-      </b-col>
-      <b-col sm="1">
-      <div class="years">
-        <b-form-select v-model="selected" :options="years"></b-form-select>
-      </div>
-      </b-col>
+      <monthYearDD/>
     </b-row>
     <b-row class="my-4 text-right">
       <b-col sm="2">
       <label><code>Academic Average:</code></label>
       </b-col>
-      <b-col sm="2">
-      <div class="grades">
-        <b-form-select v-model="selected" :options="grades"></b-form-select>
-      </div>
-      </b-col>
+      <averageDD/>
     </b-row>
     </div>
   </tab-content>
@@ -250,20 +232,11 @@
 
       <b-row class="my-4 text-right">
       <b-col sm="2">
-        <label><code>Degree Level of interest:</code></label>
+        <label><code>Starting Date:</code></label>
       </b-col>
-      <b-col md="1">
-      <div class="degreeLevel">
-        <div class="months">
-        <b-form-select v-model="selected" :options="months"></b-form-select>
-        </div>
+      <div style="padding-left:1%;">
+      <monthYearDD/>
       </div>
-      </b-col>
-      <b-col md="1">
-        <div class="years">
-          <b-form-select v-model="selected" :options="years"></b-form-select>
-        </div>
-      </b-col>
       </b-row>
 
       <b-row class="text-right">
@@ -285,13 +258,9 @@
     <div class="content-4">
     <b-row class="text-right my-3">
       <b-col sm="2">
-      <label><code>Academic Average:</code></label>
+      <label><code>Choose Academic Average:</code></label>
       </b-col>
-      <b-col sm="2">
-      <div class="grades">
-        <b-form-select v-model="selected" :options="grades"></b-form-select>
-      </div>
-      </b-col>
+      <averageDD/>
     </b-row>
     <b-row class="text-right my-3">
         <b-col sm="2">
@@ -301,41 +270,93 @@
           <b-form-input id=Country placeholder="American,African"></b-form-input>
         </b-col>
       </b-row>
+    <div
+    v-scroll="handleScroll"
+    class="box">
     <div class="EC">
       <div class="legend2">Extra-curricular Activities</div>
-      <div style="width:15%;float:left;">
+      <div style="float:left;">
       <b-form-group label="">
-        <b-form-checkbox-group
+        <b-form-checkbox-group  
           v-model="selected"
           :options="EC"
           name="flavour-1a"
+          stacked
         ></b-form-checkbox-group>
       </b-form-group>
       </div>
-      <div style="width:15%;">
+      <div style="margin-left:25%">
       <b-form-group label="">
         <b-form-checkbox-group
           v-model="selected"
           :options="EC2"
           name="flavour-1a"
+          stacked
         ></b-form-checkbox-group>
       </b-form-group>
       </div>
     </div>
     </div>
+    </div>
+
+    <div>
+    <b-form @submit.stop.prevent="onSubmit">
+      <b-form-group id="example-input-group-1" label="Name" label-for="example-input-1">
+        <b-form-input
+          id="example-input-1"
+          name="example-input-1"
+          v-model="$v.form.name.$model"
+          :state="$v.form.name.$dirty ? !$v.form.name.$error : null"
+          aria-describedby="input-1-live-feedback"
+        ></b-form-input>
+
+        <b-form-invalid-feedback id="input-1-live-feedback">
+          This is a required field and must be at least 3 characters.
+        </b-form-invalid-feedback>
+      </b-form-group>
+
+      <b-form-group id="example-input-group-2" label="Food" label-for="example-input-2">
+        <b-form-select
+          id="example-input-2"
+          name="example-input-2"
+          v-model="$v.form.food.$model"
+          :options="foods"
+          :state="$v.form.food.$dirty ? !$v.form.food.$error : null"
+          aria-describedby="input-2-live-feedback"
+        ></b-form-select>
+
+        <b-form-invalid-feedback id="input-2-live-feedback">
+          This is a required field.
+        </b-form-invalid-feedback>
+      </b-form-group>
+
+      <b-button type="submit" variant="primary" :disabled="$v.form.$invalid">Submit</b-button>
+    </b-form>
+  </div>
+
   </tab-content>
   <!-- Scholarship Profile -->
 </form-wizard>
 </template>
 
+
 <script>
 import {FormWizard, TabContent} from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
-import { required} from 'vuelidate/lib/validators'
+import { validationMixin } from 'vuelidate'
+import { required, minLength } from 'vuelidate/lib/validators'
+import monthYearDD from "@/components/monthYearDD.vue";
+import averageDD from "@/components/averageDD.vue";
 
 export default{
+   mixins: [validationMixin],
    data() {
       return {
+        foods: ['apple', 'orange'],
+        form: {
+          name: null,
+          food: null
+        },
         status:'not accepted',
         EC: [
           {value: 'a', text: 'Agricultural Development'},
@@ -357,8 +378,6 @@ export default{
           'First Name',
           'Last Name',
           'Email',
-          'User Name',
-          'Password',
         ],
         selected:[],
         options: [
@@ -367,80 +386,16 @@ export default{
           { value: 'b', text: 'Mature Student' },
           { value: 'c', text: 'Parent of a student'}
         ],
-        months:[
-          { value: null, text: 'Month'},
-          { value: null, text: 'January'},
-          { value: null, text: 'Feburary'},
-          { value: null, text: 'March'},
-          { value: null, text: 'April'},
-          { value: null, text: 'May'},
-          { value: null, text: 'June'},
-          { value: null, text: 'July'},
-          { value: null, text: 'August'},
-          { value: null, text: 'Sept'},
-          { value: null, text: 'Oct'},
-          { value: null, text: 'Nov'},
-          { value: null, text: 'Dec'}
-        ],
-        years:[
-          { value: null, text: 'Year'},
-          { value: null, text: '1980'},
-          { value: null, text: '1981'},
-          { value: null, text: '1982'},
-          { value: null, text: '1983'},
-          { value: null, text: '1984'},
-          { value: null, text: '1986'},
-          { value: null, text: '1987'},
-          { value: null, text: '1988'},
-          { value: null, text: '1989'},
-          { value: null, text: '1990'},
-          { value: null, text: '1992'},
-          { value: null, text: '1992'},
-          { value: null, text: '1993'},
-          { value: null, text: '1994'},
-          { value: null, text: '1995'},
-          { value: null, text: '1996'},
-          { value: null, text: '1997'},
-          { value: null, text: '1998'},
-          { value: null, text: '1999'},
-          { value: null, text: '2000'},
-          { value: null, text: '2001'},
-          { value: null, text: '2002'},
-          { value: null, text: '2003'},
-          { value: null, text: '2004'},
-          { value: null, text: '2005'},
-          { value: null, text: '2006'},
-          { value: null, text: '2007'},
-          { value: null, text: '2008'},
-          { value: null, text: '2009'},
-          { value: null, text: '2010'},
-          { value: null, text: '2011'},
-          { value: null, text: '2012'},
-          { value: null, text: '2013'},
-          { value: null, text: '2014'},
-          { value: null, text: '2015'},
-          { value: null, text: '2016'},
-          { value: null, text: '2017'},
-          { value: null, text: '2018'},          
-        ],
-        grades:[
-          { value: null, text: 'Grade %'},
-          { value: null, text: '50'},{ value: null, text: '51'},{ value: null, text: '52'},{ value: null, text: '53'},{ value: null, text: '54'},{ value: null, text: '55'},{ value: null, text: '56'},{ value: null, text: '57'},{ value: null, text: '58'},{ value: null, text: '59'},
-          { value: null, text: '60'},{ value: null, text: '61'},{ value: null, text: '62'},{ value: null, text: '63'},{ value: null, text: '64'},{ value: null, text: '65'},{ value: null, text: '66'},{ value: null, text: '67'},{ value: null, text: '68'},{ value: null, text: '69'},
-          { value: null, text: '70'},{ value: null, text: '71'},{ value: null, text: '72'},{ value: null, text: '73'},{ value: null, text: '74'},{ value: null, text: '75'},{ value: null, text: '76'},{ value: null, text: '77'},{ value: null, text: '78'},{ value: null, text: '79'},
-          { value: null, text: '80'},{ value: null, text: '81'},{ value: null, text: '82'},{ value: null, text: '83'},{ value: null, text: '84'},{ value: null, text: '85'},{ value: null, text: '86'},{ value: null, text: '87'},{ value: null, text: '88'},{ value: null, text: '89'},
-          { value: null, text: '90'},{ value: null, text: '91'},{ value: null, text: '92'},{ value: null, text: '93'},{ value: null, text: '94'},{ value: null, text: '95'},{ value: null, text: '96'},{ value: null, text: '97'},{ value: null, text: '98'},{ value: null, text: '99'},  
-        ],
         gender: [
           { value: 'a', text: 'Male'},
           { value: 'b', text: 'Female'}
         ],
         schoolPref:[
-          {value: null, text: 'Not Decided'},
-          {value: null, text: 'I do not see school of my interest'}
+          {value: 'A', text: 'Not Decided'},
+          {value: 'B', text: 'I do not see school of my interest'}
         ],
         fieldPref:[
-          {value: null, text: 'Not Decided'}
+          {value: 'A', text: 'Not Decided'}
         ],
         degreeLevel:[
           {value: null, text: 'Diploma'},
@@ -455,10 +410,23 @@ export default{
         }
       }
    },
+   validations: {
+      form: {
+        food: {
+          required
+        },
+        name: {
+          required,
+          minLength: minLength(3)
+        }
+      }
+    },
     //component code
     components: {
     FormWizard,
-    TabContent
+    TabContent,
+    monthYearDD,
+    averageDD
     },
     methods:{
       validate() {
@@ -466,7 +434,15 @@ export default{
       var isValid = !this.$v.form.$invalid
       this.$emit('on-validate', this.$data, isValid)
       return isValid
-    }
+      },
+      onSubmit() {
+        this.$v.form.$touch()
+        if (this.$v.form.$anyError) {
+          return
+        }
+
+        // Form submit logic
+      }
   }
 }
 </script>
@@ -517,6 +493,7 @@ export default{
     padding: 4px;
     margin-top: 0.5%;
     margin-bottom: 2%;
+    margin-left: 10%;
     border-radius: 5px;
     font-weight: bold;
   }
@@ -544,9 +521,6 @@ export default{
   }
   .content-4{
     width:95%;
-    margin-left:32%;
-  }
-  .EC{
-    margin-left:10%;
+    padding-left:20%;
   }
 </style>
