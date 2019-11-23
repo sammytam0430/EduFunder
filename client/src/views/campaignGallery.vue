@@ -13,7 +13,7 @@ img-height="250px" -->
         <div class="container">
             <img class="image" src="https://picsum.photos/300/300/?image=41"/>
             <div class="middle">
-                <div class="text"><a class="campaign-profile" href="helloworld">View Profile</a></div>
+                <div class="text"><a class="campaign-profile" href="CampaignDetails">View Profile</a></div>
             </div>
         </div>
         <div class="card-content">
@@ -28,7 +28,7 @@ img-height="250px" -->
         <p id="address"><img id="location" src="../assets/mapMarker.png">Surrey, BC , V2N 1K5</p>
         
         <!--Biography -->
-        <p>Hello My name is Jun and I would like to This may be a new line but could it be </p>
+        <p>Hello My name is Jun and I would like to receive support from .. </p>
 
         <hr/>
 
@@ -87,7 +87,7 @@ img-height="250px" -->
     p{
         font-family: 'Rubik', sans-serif;
         font-weight:400;
-        font-size:16px;
+        font-size:14px;
         color:black;
         display:inline-block;
         margin:0;

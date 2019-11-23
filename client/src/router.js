@@ -8,6 +8,7 @@ import ProfileDonor from "@/views/ProfileDonor.vue";
 import ScholarshipForm from "@/views/ScholarshipForm.vue";
 import studentCampaign from "@/views/studentCampaign.vue";
 import campaignGallery from "@/views/campaignGallery.vue";
+import campaignDetail from "@/views/campaignDetail.vue"
 
 Vue.use(Router);
 
@@ -71,6 +72,11 @@ export default new Router({
       path: "/CampaignGallery",
       name: "campaignGallery",
       component: campaignGallery
+    },
+    {
+      path:"/campaignDetails",
+      name: "campaignDetail",
+      component: campaignDetail
     }
   ]
 });
