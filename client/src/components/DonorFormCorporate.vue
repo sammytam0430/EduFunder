@@ -119,7 +119,6 @@
 </template>
 
 <script>
-import DonorFormPrivate from "@/components/DonorFormPrivate.vue";
 
 export default {
     data() {

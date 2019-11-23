@@ -65,5 +65,5 @@ export default {
 
     #donorType {
         font-size: 20pt;
-    }
+    }    
 </style>
