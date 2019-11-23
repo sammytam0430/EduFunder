@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <b-form-checkbox @change="provinceSelected()" value="Province" button> Province </b-form-checkbox>
+    <b-form-checkbox @change="provinceSelected()" value="Province" button :button-variant="checked"> Province </b-form-checkbox>
     <b-modal id="studReqProvinceModal" ref="modelProvince" title="Province"  @ok="returnData">
         <p>Select perferred province:</p>
         <b-form-checkbox-group
@@ -66,6 +66,7 @@ import importanceSlider from "@/components/ImportanceSlider.vue"
     },
     data() {
       return {
+        checked: "secondary",
         selected: false,
         province: [],  
       }
@@ -77,9 +78,11 @@ import importanceSlider from "@/components/ImportanceSlider.vue"
         this.selected = !this.selected;
         if (this.selected) {
           this.$bvModal.show('studReqProvinceModal');
+          this.checked="primary"
         } else {
           this.$parent.province.selectedProvince = ['Any'];
           this.$parent.selectedCriteria.province = false;
+          this.checked="secondary"
         }
       },
       returnData(bvModalEvt) {

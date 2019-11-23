@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <b-form-checkbox @change="genderSelected()" value="Gender" button> Gender </b-form-checkbox>
+    <b-form-checkbox @change="genderSelected()" value="Gender" button :button-variant="checked"> Gender </b-form-checkbox>
     <b-modal id="studReqGenderModal" ref="modelProvince" title="Gender"  @ok="returnData">
         <p>Select perferred gender:</p>
         <b-form-radio-group id="gender" v-model="gender" class="mb-4">
@@ -29,6 +29,7 @@
     },
     data() {
       return {
+        checked: "secondary",
         selected: false,
         gender: '',
         importance: 0
@@ -40,9 +41,11 @@
         this.selected = !this.selected;
         if (this.selected) {
           this.$bvModal.show('studReqGenderModal');
+          this.checked="primary"
         } else {
           this.$parent.gender.selectedGender = 'Male or Female';
           this.$parent.selectedCriteria.gender = false;
+          this.checked="secondary"
         }
       },
       returnData(bvModalEvt) {

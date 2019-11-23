@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <b-form-checkbox @change="ageSelected()" value="Age" button> Age </b-form-checkbox>
+    <b-form-checkbox @change="ageSelected()" value="Age" button :button-variant="checked"> Age </b-form-checkbox>
     <b-modal id="studReqAgeModal" ref="modelAge" title="Select your preferred age" @ok="returnData">
         <b-container id = "slider">
           <p id = "titleAge"> Age: <strong>{{age[0]}} - {{age[1]}}</strong></p>
@@ -28,6 +28,7 @@
     },
     data() {
       return {
+        checked: "secondary",
         selected: false,
         age:[17, 35],
         importance: 0
@@ -39,9 +40,11 @@
         this.selected = !this.selected;
         if (this.selected) {
           this.$bvModal.show('studReqAgeModal');
+          this.checked="primary";
         } else {
           this.$parent.age.selectedAge = [16, 65];
           this.$parent.selectedCriteria.age = false;
+          this.checked="secondary";
         }
       },
       returnData(bvModalEvt) {

@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <b-form-checkbox @change="schoolLevelSelected()" value="SchoolLevel" button> Level of Study </b-form-checkbox>
+    <b-form-checkbox @change="schoolLevelSelected()" value="SchoolLevel" button :button-variant="checked"> Level of Study </b-form-checkbox>
     <b-modal id="studReqSchoolLevelModal" ref="modelSchoolLevel" title="SchoolLevel"  @ok="returnData">
         <p>Select perferred level of study:</p>
         <b-form-checkbox-group
@@ -57,6 +57,7 @@ import importanceSlider from "@/components/ImportanceSlider.vue"
     },
     data() {
       return {
+        checked: "secondary",
         selected: false,
         schoolLevel: [],  
       }
@@ -68,9 +69,11 @@ import importanceSlider from "@/components/ImportanceSlider.vue"
         this.selected = !this.selected;
         if (this.selected) {
           this.$bvModal.show('studReqSchoolLevelModal');
+          this.checked="primary";
         } else {
           this.$parent.schoolLevel.selectedSchoolLevel = ['Any'];
           this.$parent.selectedCriteria.schoolLevel = false;
+          this.checked="secondary";
         }
       },
       returnData(bvModalEvt) {
