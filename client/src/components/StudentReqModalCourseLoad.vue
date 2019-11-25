@@ -1,16 +1,16 @@
 <template>
   <b-container>
-    <b-button @click="genderSelected()" value="Gender" :variant="checked"> Gender </b-button>
-    <b-modal id="studReqGenderModal" ref="modelProvince" title="Gender"  
+    <b-button @click="courseLoadSelected()" value="CourseLoad" :variant="checked"> Course Load </b-button>
+    <b-modal id="studReqCourseLoadModal" ref="modelProvince" title="Course Load"  
       @ok="returnData" @close="closeModal" @cancel="closeModal">
-        <p>Select perferred gender:</p>
-        <b-form-radio-group id="gender" v-model="gender" class="mb-4">
+        <p>Select perferred course load:</p>
+        <b-form-radio-group id="courseLoad" v-model="courseLoad" class="mb-4">
                 <b-row class = "text-center">
                     <b-col>
-                        <b-form-radio value="Male">Male</b-form-radio>
+                        <b-form-radio value="Full-time">Full-time</b-form-radio>
                     </b-col>
                     <b-col>
-                        <b-form-radio value="Female">Female</b-form-radio>
+                        <b-form-radio value="Part-time">Part-time</b-form-radio>
                     </b-col>
                 </b-row>
             </b-form-radio-group>
@@ -22,7 +22,7 @@
 <script>
   import importanceSlider from "@/components/ImportanceSlider.vue"
   export default {
-    name: 'studentReqModalGender',
+    name: 'studentReqModalCourseLoad',
     components: {
       importanceSlider
       },
@@ -32,40 +32,40 @@
       return {
         checked: "secondary",
         selected: false,
-        gender: '',
+        courseLoad: '',
         importance: 0
       }
     },
     watch: {},
     methods: {
-      genderSelected() {
+      courseLoadSelected() {
         this.selected = !this.selected;
         if (this.selected) {
-          this.$bvModal.show('studReqGenderModal');
+          this.$bvModal.show('studReqCourseLoadModal');
           this.checked="primary"
         } else {
-          this.$parent.gender.selectedGender = 'Male or Female';
-          this.$parent.selectedCriteria.gender = false;
+          this.$parent.courseLoad.selectedCourseLoad = 'Full-time or Part-time';
+          this.$parent.selectedCriteria.courseLoad = false;
           this.checked="secondary"
         }
       },
       returnData(bvModalEvt) {
         bvModalEvt.preventDefault()
           
-        this.$parent.gender.selectedGender = this.gender;
-        this.$parent.gender.importance = this.importance;
-        this.$parent.selectedCriteria.gender = true;
+        this.$parent.courseLoad.selectedCourseLoad = this.courseLoad;
+        this.$parent.courseLoad.importance = this.importance;
+        this.$parent.selectedCriteria.courseLoad = true;
 
         this.$nextTick(()=>{
-          this.$bvModal.hide('studReqGenderModal');
+          this.$bvModal.hide('studReqCourseLoadModal');
         })
       },
       closeModal(bvModalEvt) {
           bvModalEvt.preventDefault();
-          this.genderSelected();
+          this.courseLoadSelected()
 
           this.$nextTick(()=>{
-          this.$bvModal.hide('studReqGenderModal');
+          this.$bvModal.hide('studReqCourseLoadModal');
         })
       },
       getGenderImportance(value) {
@@ -74,4 +74,3 @@
     }
   };
 </script>
-

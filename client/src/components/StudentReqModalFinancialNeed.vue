@@ -1,16 +1,16 @@
 <template>
   <b-container>
-    <b-button @click="genderSelected()" value="Gender" :variant="checked"> Gender </b-button>
-    <b-modal id="studReqGenderModal" ref="modelProvince" title="Gender"  
+    <b-button @click="financialNeedSelected()" value="FinancialNeed" :variant="checked"> Financial Need </b-button>
+    <b-modal id="studReqFinancialNeedModal" ref="modelProvince" title="Financial Need"  
       @ok="returnData" @close="closeModal" @cancel="closeModal">
-        <p>Select perferred gender:</p>
-        <b-form-radio-group id="gender" v-model="gender" class="mb-4">
+        <p>Is financial need important:</p>
+        <b-form-radio-group id="financialNeed" v-model="financialNeed" class="mb-4">
                 <b-row class = "text-center">
                     <b-col>
-                        <b-form-radio value="Male">Male</b-form-radio>
+                        <b-form-radio value="Yes">Yes</b-form-radio>
                     </b-col>
                     <b-col>
-                        <b-form-radio value="Female">Female</b-form-radio>
+                        <b-form-radio value="No">No</b-form-radio>
                     </b-col>
                 </b-row>
             </b-form-radio-group>
@@ -22,7 +22,7 @@
 <script>
   import importanceSlider from "@/components/ImportanceSlider.vue"
   export default {
-    name: 'studentReqModalGender',
+    name: 'studentReqModalFinancialNeed',
     components: {
       importanceSlider
       },
@@ -32,43 +32,43 @@
       return {
         checked: "secondary",
         selected: false,
-        gender: '',
+        financialNeed: 'No',
         importance: 0
       }
     },
     watch: {},
     methods: {
-      genderSelected() {
+      financialNeedSelected() {
         this.selected = !this.selected;
         if (this.selected) {
-          this.$bvModal.show('studReqGenderModal');
+          this.$bvModal.show('studReqFinancialNeedModal');
           this.checked="primary"
         } else {
-          this.$parent.gender.selectedGender = 'Male or Female';
-          this.$parent.selectedCriteria.gender = false;
+          this.$parent.financialNeed.selectedFinancialNeed = 'No';
+          this.$parent.selectedCriteria.financialNeed = false;
           this.checked="secondary"
         }
       },
       returnData(bvModalEvt) {
         bvModalEvt.preventDefault()
           
-        this.$parent.gender.selectedGender = this.gender;
-        this.$parent.gender.importance = this.importance;
-        this.$parent.selectedCriteria.gender = true;
+        this.$parent.financialNeed.selectedFinancialNeed = this.financialNeed;
+        this.$parent.financialNeed.importance = this.importance;
+        this.$parent.selectedCriteria.financialNeed = true;
 
         this.$nextTick(()=>{
-          this.$bvModal.hide('studReqGenderModal');
+          this.$bvModal.hide('studReqFinancialNeedModal');
         })
       },
       closeModal(bvModalEvt) {
           bvModalEvt.preventDefault();
-          this.genderSelected();
+          this.financialNeedSelected();
 
           this.$nextTick(()=>{
-          this.$bvModal.hide('studReqGenderModal');
+          this.$bvModal.hide('studReqFinancialNeedModal');
         })
       },
-      getGenderImportance(value) {
+      getfinancialNeedImportance(value) {
         this.importance = value;
       }
     }

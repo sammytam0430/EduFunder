@@ -1,7 +1,8 @@
 <template>
   <b-container>
-    <b-form-checkbox @change="studyFieldSelected()" value="studyField" button :button-variant="checked"> Field of study </b-form-checkbox>
-    <b-modal id="studReqStudyFieldModal" ref="modelStudyField" title="Field of Study"  @ok="returnData">
+    <b-button @click="studyFieldSelected()" value="studyField" :variant="checked"> Field of study </b-button>
+    <b-modal id="studReqStudyFieldModal" ref="modelStudyField" title="Field of Study"  
+      @ok="returnData" @close="closeModal" @cancel="closeModal">
         <p>Select perferred field of study:</p>
         <b-input-group size="sm" class="mb-4">
             <b-form-select v-model="studyField" :options="fields" ></b-form-select>
@@ -12,7 +13,9 @@
         <div class="mt-3">
             Added Field: <br>
             <ul>
-                <li v-for="field in studyFields" :key="field">{{field}}</li>
+                <li v-for="field in studyFields" :key="field">{{field}} 
+                  <!-- <b-button @click="deleteField(field)"></b-button> -->
+                  </li>
             </ul>
         </div>
         
@@ -119,12 +122,23 @@
           this.$bvModal.hide('studReqStudyFieldModal');
         })
       },
+      closeModal(bvModalEvt) {
+          bvModalEvt.preventDefault();
+          this.studyFieldSelected();
+
+          this.$nextTick(()=>{
+          this.$bvModal.hide('studReqStudyFieldModal');
+        })
+      },
       getGenderImportance(value) {
         this.importance = value;
       },
       addField() {
           this.studyFields.push(this.studyField);
       }
+      // deleteField(index) {
+      //     this.studyFields.splice(index, 1);
+      // }
     }
   };
 </script>
