@@ -4,8 +4,8 @@
   <!--Basic Information -->
   
   <div class="content-1">
-    
-  <tab-content title="Basic information">
+   <!-- :before-change="()=>validate()"  -->
+  <tab-content title="Basic information" >
     <b-container fluid >
     <div class="legend">Basic info</div>
     <div>
@@ -24,18 +24,47 @@
         </b-form-invalid-feedback>
       </b-form-group> -->
     </div>
-    <b-row class="my-4 text-right" v-for="type in types" :key="type">
-
+    <b-row class="my-4 text-right">
       <b-col sm="1">
-        <label :for="`type-${type}`"> <code>{{ type }}</code>:</label>
-      </b-col>
-
+        <label><code>First Name: </code></label>
+      </b-col >
       <b-col sm="3">
-        <b-form-input :id="`type-${type}`" :type="type"
-          ></b-form-input>
-
-          <b-form-invalid-feedback id="input-1-live-feedback">
-          This is a required field and must be at least 3 characters.
+        <b-form-input v-model="$v.form.name.$model" 
+        :state="$v.form.name.$dirty ? !$v.form.name.$error : null"
+        aria-describedby="input-1-live-feedback"
+        ></b-form-input>
+        <b-form-invalid-feedback id="input-1-live-feedback">
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback id="input-1-live-feedback">
+          Please enter your first name
+        </b-form-invalid-feedback>
+      </b-col>
+    </b-row>
+    <b-row class="my-4 text-right">
+      <b-col sm="1">
+        <label><code>Last Name: </code></label>
+      </b-col >
+      <b-col sm="3">
+        <b-form-input v-model="$v.form.lname.$model" 
+        :state="$v.form.lname.$dirty ? !$v.form.lname.$error : null"
+        aria-describedby="input-1-live-feedback"
+        ></b-form-input>
+        <b-form-invalid-feedback id="input-1-live-feedback">
+          Please enter your last name
+        </b-form-invalid-feedback>
+      </b-col>
+    </b-row>
+    <b-row class="my-4 text-right">
+      <b-col sm="1">
+        <label><code>Email: </code></label>
+      </b-col >
+      <b-col sm="3">
+        <b-form-input v-model="$v.form.email.$model" 
+        :state="$v.form.email.$dirty ? !$v.form.email.$error : null"
+        aria-describedby="input-1-live-feedback"
+        ></b-form-input>
+        <b-form-invalid-feedback id="input-1-live-feedback">
+          Please enter an email
         </b-form-invalid-feedback>
       </b-col>
     </b-row>
@@ -46,8 +75,14 @@
       <b-col sm="3">
         
         <b-form-input id=type-date type="date"
+        v-model="$v.form.birthday.$model" 
+        :state="$v.form.birthday.$dirty ? !$v.form.birthday.$error : null"
+        aria-describedby="input-1-live-feedback"
          >
         </b-form-input>
+        <b-form-invalid-feedback id="input-1-live-feedback">
+          Please enter your birthday
+        </b-form-invalid-feedback>
       </b-col>
     </b-row>
     <b-row class="gender">
@@ -57,6 +92,9 @@
       <b-col sm="2">
         <b-form-group label="" class="radio">
         <b-form-radio-group
+         v-model="$v.form.gender.$model" 
+        :state="$v.form.gender.$dirty ? !$v.form.gender.$error : null"
+        aria-describedby="input-1-live-feedback"
         :options="gender"
         name="radio-inline"
         ></b-form-radio-group>
@@ -68,6 +106,7 @@
         
         <label><code>Current Location: </code></label>
       </b-col>
+
       <b-col class="address" sm="3">
         <b-form-input placeholder="City"
         id="example-input-1"  
@@ -79,10 +118,24 @@
           <b-form-invalid-feedback id="input-1-live-feedback">
           This is a required field.
         </b-form-invalid-feedback>
+
         <b-form-input id=address placeholder="Country"
+         v-model="$v.form.address.$model"
+          :state="$v.form.address.$dirty ? !$v.form.address.$error : null"
+          aria-describedby="input-1-live-feedback"
         ></b-form-input>
+        <b-form-invalid-feedback id="input-1-live-feedback">
+          This is a required field.
+        </b-form-invalid-feedback>
+
         <b-form-input id=address placeholder="Postal/Zip code"
+         name="example-input-1"
+          v-model="$v.form.postalCode.$model"
+          :state="$v.form.postalCode.$dirty ? !$v.form.postalCode.$error : null"
        ></b-form-input>
+       <b-form-invalid-feedback id="input-1-live-feedback">
+          This is a required field.
+        </b-form-invalid-feedback>
       </b-col>
     </b-row>
     <b-row class="my-4">
@@ -91,7 +144,13 @@
       </b-col>
       <b-col cols="2">
       <div class="degreeLevel">
-        <b-form-select v-model="selected" :options="citizenship"></b-form-select>
+        <b-form-select :options="citizenship"
+        name="example-input-1"
+          v-model="$v.form.citizenship.$model"
+          :state="$v.form.citizenship.$dirty ? !$v.form.citizenship.$error : null"></b-form-select>
+          <b-form-invalid-feedback id="input-1-live-feedback">
+          This is a required field.
+        </b-form-invalid-feedback>
       </div>
       </b-col>
     </b-row>
@@ -99,8 +158,15 @@
       <b-col sm="2">
         <label><code>Language Fluency: </code></label>
       </b-col>
-      <b-col sm="2">
-        <b-form-input id=Language placeholder="Language"></b-form-input>
+      <b-col sm="2"
+      >
+        <b-form-input id=Language placeholder="Language"
+        name="example-input-1"
+          v-model="$v.form.language.$model"
+          :state="$v.form.language.$dirty ? !$v.form.language.$error : null"></b-form-input>
+          <b-form-invalid-feedback id="input-1-live-feedback">
+          This is a required field.
+        </b-form-invalid-feedback>
       </b-col>
     </b-row>
     </b-container>
@@ -132,7 +198,12 @@
       </b-col>
       <b-col sm="3">
         <div class="options">
-        <b-form-input></b-form-input>
+        <b-form-input name="example-input-1"
+          v-model="$v.form2.highschool.$model"
+          :state="$v.form2.highschool.$dirty ? !$v.form2.highschool.$error : null"></b-form-input>
+          <b-form-invalid-feedback id="input-1-live-feedback">
+          This is a required field.
+        </b-form-invalid-feedback>
         </div>
       </b-col>
     </b-row>
@@ -140,7 +211,7 @@
       <b-col sm="2">
       <label><code>Graduation Date: </code></label>
       </b-col>
-      <monthYearDD/>
+      <monthYearDD />
     </b-row>
     
     <b-row class="my-4 text-right">
@@ -156,7 +227,11 @@
       </b-col>
       <b-col sm="3">
         <div class="options">
-        <b-form-input></b-form-input>
+        <b-form-input v-model="$v.form2.university.$model"
+          :state="$v.form2.university.$dirty ? !$v.form2.university.$error : null"></b-form-input>
+        <b-form-invalid-feedback id="input-1-live-feedback">
+          This is a required field.
+        </b-form-invalid-feedback>
         </div>
       </b-col>
     </b-row>
@@ -187,7 +262,11 @@
       </b-col>
       <b-col sm="3">
         <div class="options">
-        <b-form-input v-model="selected" :options="options"></b-form-input>
+        <b-form-input   v-model="$v.form3.schoolInterest.$model"
+          :state="$v.form3.schoolInterest.$dirty ? !$v.form3.schoolInterest.$error : null"></b-form-input>
+        <b-form-invalid-feedback id="input-1-live-feedback">
+          This is a required field.
+        </b-form-invalid-feedback>
         </div>
       </b-col>
     </b-row>
@@ -208,17 +287,11 @@
       </b-col>
       <b-col sm="3">
         <div class="options">
-        <b-form-input v-model="selected" :options="options" type='school'></b-form-input>
-        </div>
-      </b-col>
-    </b-row>
-
-    <b-row class="my-4">
-      <b-col sm="2">
-      </b-col>
-      <b-col sm="3">
-        <div class="options">
-        <b-form-input v-model="selected" :options="options"></b-form-input>
+        <b-form-input v-model="$v.form3.fieldInterest.$model"
+          :state="$v.form3.fieldInterest.$dirty ? !$v.form3.fieldInterest.$error : null"></b-form-input>
+        <b-form-invalid-feedback id="input-1-live-feedback">
+          This is a required field.
+        </b-form-invalid-feedback>
         </div>
       </b-col>
     </b-row>
@@ -239,7 +312,11 @@
       </b-col>
       <b-col md="2">
       <div class="degreeLevel" style="width:120%">
-        <b-form-select v-model="selected" :options="degreeLevel"></b-form-select>
+        <b-form-select v-model="$v.form3.degreeLevel.$model" :options="degreeLevel"
+          :state="$v.form3.degreeLevel.$dirty ? !$v.form3.degreeLevel.$error : null"></b-form-select>
+        <b-form-invalid-feedback id="input-1-live-feedback">
+          This is a required field.
+        </b-form-invalid-feedback>
       </div>
       </b-col>
       </b-row>
@@ -258,7 +335,11 @@
            <label><code>Location interest:</code></label>
         </b-col>
         <b-col sm="2">
-          <b-form-input id=Country placeholder="Country"></b-form-input>
+          <b-form-input id=Country placeholder="Country" v-model="$v.form3.country.$model"
+          :state="$v.form3.country.$dirty ? !$v.form3.country.$error : null"></b-form-input>
+        <b-form-invalid-feedback id="input-1-live-feedback">
+          This is a required field.
+        </b-form-invalid-feedback>
         </b-col>
       </b-row>
     </div>
@@ -294,7 +375,7 @@
 import {FormWizard, TabContent} from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 import { validationMixin } from 'vuelidate'
-import { required, minLength } from 'vuelidate/lib/validators'
+import { required, email, alpha} from 'vuelidate/lib/validators'
 import monthYearDD from "@/components/monthYearDD.vue";
 import averageDD from "@/components/averageDD.vue";
 import ethnicityDD from "@/components/ethnicityDD.vue"
@@ -310,7 +391,24 @@ export default{
         foods: ['apple', 'orange'],
         form: {
           name: null,
-          food: null
+          email: null,
+          lname: null,
+          language: null,
+          city: null,
+          address: null,
+          postalCode: null,
+          birthday: null,
+          gender: null,
+        },
+        form2: {
+          highschool: null,
+          university: null
+        },
+        form3: {
+          schoolInterest: null,
+          fieldInterest: null,
+          degreeLevel: null,
+          country: null
         },
         status:'not accepted',
         types: [
@@ -355,16 +453,64 @@ export default{
    },
    validations: {
       form: {
+        email:{
+          required,
+          email
+        },
         food: {
           required
         },
         name: {
           required,
-          minLength: minLength(3)
+         alpha
+        },
+        lname: {
+          required,
+          alpha
         },
         city: {
+          required
+        },
+        language:{
           required,
-          minLength: minLength(4)
+          alpha
+        },
+        citizenship:{
+          required
+        },
+        address: {
+          required
+        },
+        postalCode: {
+          required
+        },
+        birthday: {
+          required
+        },
+        gender: {
+          required
+        }
+      },
+      form2: {
+        highschool: {
+          required
+        },
+        university: {
+          required
+        }
+      },
+      form3: {
+        schoolInterest: {
+          required
+        },
+        fieldInterest: {
+          required
+        },
+        degreeLevel: {
+          required
+        },
+        country: {
+          required
         }
       }
     },
@@ -384,7 +530,6 @@ export default{
       validate() {
       this.$v.form.$touch();
       var isValid = !this.$v.form.$invalid
-      this.$emit('on-validate', this.$data, isValid)
       return isValid
       },
       onSubmit() {
