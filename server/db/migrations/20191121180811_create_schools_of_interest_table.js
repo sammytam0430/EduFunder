@@ -1,7 +1,8 @@
 exports.up = function (knex, Promise) {
     return Promise.all([
         knex.schema.createTable("schoolsOfInterest", table => {
-            table.integer("userId").notNullable().unique();
+            table.increments("schoolID").primary();
+            table.integer("userId").notNullable();
             table.string("name").notNullable();
             table.string("fieldOfStudy").notNullable();
             table.string("academicLevel").notNullable();
