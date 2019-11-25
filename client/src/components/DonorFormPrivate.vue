@@ -1,47 +1,41 @@
 <template>
-    <b-form @save="onSave" @cancel="onCancel">
+    <b-form @submit.stop.prevent="onSubmit">
         <b-form-group
             id = "donarNamePrivate"
             label = "Donor Name: "
-            label-for = "input-Name-private"
+            label-for = "donarNameInputPrivate"
             label-cols-lg = "3"
-            label-cols-sm = "4"
         >
             <b-form-input
                 id = "donarNameInputPrivate"
-                v-model = "name"
-                required
+                v-model = "$v.donorName.$model"
                 placeholder = ""
+                :state="$v.donorName.$dirty ? !$v.donorName.$error : null"
+                aria-describedby="donorNameFeedback"
             ></b-form-input>
-        </b-form-group>
-
-        <b-form-group 
-            id = "input-Country"
-            label = "Country: "
-            label-for = "input-Country-private"
-            label-cols-lg = "3"
-        >
-            <b-form-input
-                id = "input-Country-private"
-                v-model = "country"
-                required
-                placeholder = ""
-            ></b-form-input>
+            <b-form-invalid-feedback id="donorNameFeedback">
+                Donor name cannot be empty
+            </b-form-invalid-feedback>
         </b-form-group>
 
         <b-form-group
-            id = "input-LinkedinProfile"
+            id = "linkedinProfilePrivate"
             label = "Linkedin Profile: "
-            label-for = "input-LinkedinProfile-private"
+            label-for = "linkedinProfileInputPrivate"
             label-cols-lg = "3"
         >
             <b-form-input
-                id = "input-LinkedinProfile-private"
-                v-model = "linkedinProfile"
+                id = "linkedinProfileInputPrivate"
+                v-model = "$v.linkedinProfile.$model"
                 placeholder = ""
+                :state="$v.linkedinProfile.$dirty ? !$v.linkedinProfile.$anyError : null"
+                aria-describedby="linkedinProfileFeedback"
             ></b-form-input>
+            <b-form-invalid-feedback id="linkedinProfileFeedback">
+                Linkedin Profile needs to be in url
+            </b-form-invalid-feedback>
         </b-form-group>
-
+<!-- 
         <b-form-group
             id = "input-ProfilePic"
             label = "Profile Image: "
@@ -66,75 +60,141 @@
               placeholder="Choose a file or drop it here..."
               drop-placeholder="Drop file here..."
             ></b-form-file>
-        </b-form-group>
+        </b-form-group> -->
 
         <b-form-group
-            id = "input-Contact"
+            id = "contactPrivate"
             label = "Contact: "
-            label-for = "input-Contact-private"
+            label-for = "contactInputPrivate"
             label-cols-lg = "3"
         >
             <b-form-input
-                id = "input-Contact-private"
-                v-model = "contact"
-                placeholder = ""
+                id = "contactInputPrivate"
+                v-model = "$v.contact.$model"
+                placeholder = "e.g. 6041234567"
+                :state="$v.contact.$dirty ? !$v.contact.$anyError : null"
+                aria-describedby="contactFeedback"
             ></b-form-input>
+            <b-form-invalid-feedback id="contactFeedback">
+                Invalid contact
+            </b-form-invalid-feedback>
         </b-form-group>
 
         <b-form-group
-            id = "input-Address"
+            id = "addressPrivate"
             label = "Address: "
-            label-for = "input-Address-private"
+            label-for = "addressInputPrivate"
             label-cols-lg = "3"
         >
             <b-form-input
-                id = "input-Address-private"
-                v-model = "address"
+                id = "addressInputPrivate"
+                v-model = "$v.address.$model"
                 placeholder = ""
+                :state="$v.address.$dirty ? !$v.address.$error : null"
+                aria-describedby="addressFeedback"
             ></b-form-input>
+            <b-form-invalid-feedback id="addressFeedback">
+                address cannot be empty
+            </b-form-invalid-feedback>
+        </b-form-group>
+
+        <b-form-group 
+            id = "coutryPrivate"
+            label = "Country: "
+            label-for = "coutryInputPrivate"
+            label-cols-lg = "3"
+        >
+            <b-form-input
+                id = "coutryInputPrivate"
+                v-model = "$v.country.$model"
+                placeholder = ""
+                :state="$v.country.$dirty ? !$v.country.$error : null"
+                aria-describedby="countryFeedback"
+            ></b-form-input>
+            <b-form-invalid-feedback id="countryFeedback">
+                Country cannot be empty or with numbers
+            </b-form-invalid-feedback>
         </b-form-group>
 
         <b-form-group
-            id = "input-Email"
+            id = "emailPrivate"
             label = "Email: "
-            label-for = "input-Email-private"
+            label-for = "emailInputPrivate"
             label-cols-lg = "3 "
         >
             <b-form-input
-                id = "input-Email-private"
-                v-model = "email"
+                id = "emailInputPrivate"
+                v-model = "$v.email.$model"
                 placeholder = ""
-                type = "email"
+                :state="$v.email.$dirty ? !$v.email.$anyError : null"
+                aria-describedby="emailFeedback"
             ></b-form-input>
+            <b-form-invalid-feedback id="emailFeedback">
+                Invalid email
+            </b-form-invalid-feedback>
         </b-form-group>
         <b-row>
           <b-col ></b-col>
           <b-col ></b-col>
-          <b-col ><b-button class = "w-100" type="save" variant="primary">Save</b-button></b-col>
-          <b-col ><b-button class = "w-100"  type="cancel" variant="danger">Cancel</b-button></b-col>
+          <b-col ><b-button class = "w-100" type="submit" variant="primary">Save</b-button></b-col>
+          <!-- <b-col ><b-button class = "w-100"  type="cancel" variant="danger">Cancel</b-button></b-col> -->
         </b-row>
     </b-form>
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate'
+import { required, minLength, maxLength, url, numeric, email, alpha } from 'vuelidate/lib/validators'
+
 export default {
+    mixins: [validationMixin],
     data() {
       return {
-        name: '',
-        country: '',
-        linkedinProfile: '',
-        contact: '',
-        address: '',
-        email: ''
+          donorName: '',
+          country: '',
+          linkedinProfile: '',
+          contact: '',
+          address: '',
+          email: ''
       }
+    },
+    validations: {
+        donorName: {
+            required
+        },
+        contact: {
+            required,
+            numeric,	
+            minLength: minLength(10),
+            maxLength: maxLength(10)
+        },
+        linkedinProfile: {
+            required,
+            url
+        },
+        address: {
+            required
+        },
+        country: {
+            required,
+            alpha
+        },
+        email: {
+            required,
+            email
+        }
     },
     methods: {
         onSubmit() {
-
-        },
-        onReset() {
-            
+            this.$v.$touch();
+            if (this.$v.$anyError) {
+            return
+            }
         }
+        // ,
+        // onReset() {
+            
+        // }
     }
 }
 </script>

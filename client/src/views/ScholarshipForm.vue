@@ -1,9 +1,9 @@
 <template>
     <b-container class="w-75 p-5 formBody">
-        <form-wizard @save="onSave" @cancel="onCancel" color = "#007bff">
+        <form-wizard  color = "#007bff">
             <div class = "text-center font-weight-bold" id = "titleScholarship" slot ="title">Create a scholarship</div>
-            <tab-content title="When and How Much"> 
-                <ScholarshipFormBasicInfo></ScholarshipFormBasicInfo>
+            <tab-content title="When and How Much" :before-change="()=>validateBasicInfo()"> 
+                <ScholarshipFormBasicInfo ref="basicInfo"></ScholarshipFormBasicInfo>
             </tab-content>
              <tab-content title = "Who can apply">
                  <ScholarshipFormStudentReq></ScholarshipFormStudentReq>
@@ -28,6 +28,12 @@
     data() {
       return {      
       }
+    },
+    methods: {
+        validateBasicInfo() {
+            return this.$refs['basicInfo'].validate();
+        }
+
     }
   }
 </script>

@@ -25,11 +25,14 @@
 
             <b-form-input
                 id = "inputNameSchoarship"
-                v-model = "name"
-                required
+                v-model = "$v.name.$model"
                 placeholder = ""
+                :state="$v.name.$dirty ? !$v.name.$error : null"
+                aria-describedby="nameFeedback"
             ></b-form-input>
-
+            <b-form-invalid-feedback id="nameFeedback">
+                Scholarship name cannot be empty
+            </b-form-invalid-feedback>
         </b-form-group>
         
         <b-row class = "mb-2">
@@ -42,12 +45,16 @@
                     <b-input-group prepend="$">
                         <b-form-input
                             id = "inputAmountScholarship"
-                            v-model = "amount"
-                            required
-                            type = "number"
+                            v-model = "$v.amount.$model"
                             class="text-right"
+                            placeholder = "0.00"
+                            :state="$v.amount.$dirty ? !$v.amount.$anyError : null"
+                            aria-describedby="amountFeedback"
                         ></b-form-input>
                     </b-input-group>
+                    <b-form-invalid-feedback id="amountFeedback">
+                        Scholarship amount cannot be 0
+                    </b-form-invalid-feedback>
                 </b-form-group>
             </b-col>
             <b-col>
@@ -58,11 +65,14 @@
                 >
                     <b-form-input
                         id = "inputRecipientsScholarship"
-                        v-model = "recipient"
-                        required
+                        v-model = "$v.recipient.$model"
                         placeholder = ""
-                        type = "number"
+                        :state="$v.recipient.$dirty ? !$v.recipient.$anyError : null"
+                        aria-describedby="recipientFeedback"
                     ></b-form-input>
+                    <b-form-invalid-feedback id="recipientFeedback">
+                        Scholarship recipient cannot be 0
+                    </b-form-invalid-feedback>
                 </b-form-group>
             </b-col>
         </b-row>
@@ -75,34 +85,50 @@
             <b-row class = "mb-1">
                 <b-col>
                     <b-form-group
-                            id = "StartScholarship"
-                            label = "From"
-                            label-for = "selectStartScholarship"
-                            label-cols-lg="2"
-                            label-cols-sm = "4">
-                            <b-form-input type = "date" v-model = "dateStart"></b-form-input>
-                        
+                        id = "StartScholarship"
+                        label = "From"
+                        label-for = "selectStartScholarship"
+                        >
+                        <b-form-input type = "date" 
+                            v-model = "$v.dateStart.$model"
+                            :state="$v.dateStart.$dirty ? !$v.dateStart.$error : null"
+                            aria-describedby="dateStartFeedback"
+                        ></b-form-input>  
+                        <b-form-invalid-feedback id="dateStartFeedback">
+                            Pleasse select the application start date
+                        </b-form-invalid-feedback>
                     </b-form-group>
                 </b-col>
                 <b-col>
                     <b-form-group
-                            id = "labelEndScholarship"
-                            label = "To"
-                            label-for = "selectEndScholarship"
-                            label-cols-lg="2"
-                            label-cols-sm = "4">
-
-                        <b-form-input type = "date" v-model = "dateEnd"></b-form-input>  
+                        id = "labelEndScholarship"
+                        label = "To"
+                        label-for = "selectEndScholarship"
+                        >
+                        <b-form-input type = "date" 
+                            v-model = "$v.dateEnd.$model"
+                            :state="$v.dateEnd.$dirty ? !$v.dateEnd.$error : null"
+                            aria-describedby="dateEndFeedback"
+                        ></b-form-input>  
+                        <b-form-invalid-feedback id="dateEndFeedback">
+                            Pleasse select the application end date
+                        </b-form-invalid-feedback>
                     </b-form-group>
                 </b-col>
-                <b-col cols="5">
+                <b-col>
                     <b-form-group
                             id = "labelAwardScholarship"
                             label = "And Award on"
                             label-for = "selectAwardScholarship"
-                            label-cols-lg="4"
-                            label-cols-sm = "5">
-                        <b-form-input type = "date" v-model = "dateAward"></b-form-input>
+                            >
+                        <b-form-input type = "date" 
+                            v-model = "$v.dateAward.$model"
+                            :state="$v.dateAward.$dirty ? !$v.dateAward.$error : null"
+                            aria-describedby="dateAwardFeedback"
+                            ></b-form-input>
+                            <b-form-invalid-feedback id="dateAwardFeedback">
+                                Pleasse select the scholarship award date
+                            </b-form-invalid-feedback>
                     </b-form-group>
                 </b-col>
             </b-row>
@@ -135,18 +161,54 @@
 </template>
 
 <script>
-  export default {
+import { validationMixin } from 'vuelidate'
+import { required, between, integer, decimal } from 'vuelidate/lib/validators'
+
+export default {
+    mixins: [validationMixin],
     data() {
       return {
         name: '',
         amount:'',
-        recipent: '',
+        recipient: '',
         selected: 'Public',
         addSubmission: [],
         dateStart: '',
         dateEnd: '',
         dateAward: ''      
       }
+    },
+    validations: {
+        name: {
+            required
+        },
+        amount: {
+            required,
+            decimal,
+            between: between(0.5, 999999999)
+        },
+        recipient: {
+            required,
+            integer,
+            between: between(1, 99999)
+        },
+        dateStart: {
+            required
+        },
+        dateEnd: {
+            required
+        },
+        dateAward: {
+            required
+        }
+    },
+    methods: {
+        validate() {
+            this.$v.$touch();
+            var isValid = !this.$v.$invalid;
+            this.$emit('returnData', this.$data, isValid);
+            return isValid;
+        }
     }
   }
 </script>
