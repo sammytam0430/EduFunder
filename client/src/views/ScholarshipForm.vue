@@ -2,7 +2,8 @@
     <b-container class="w-75 p-5 formBody">
         <form-wizard  color = "#007bff">
             <div class = "text-center font-weight-bold" id = "titleScholarship" slot ="title">Create a scholarship</div>
-            <tab-content title="When and How Much" :before-change="()=>validateBasicInfo()"> 
+            <!-- <tab-content title="When and How Much" :before-change="()=>validateBasicInfo()">  -->
+            <tab-content title="When and How Much"> 
                 <ScholarshipFormBasicInfo ref="basicInfo"></ScholarshipFormBasicInfo>
             </tab-content>
              <tab-content title = "Who can apply">

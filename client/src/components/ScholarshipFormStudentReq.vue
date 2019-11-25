@@ -38,6 +38,7 @@
                 <studentReqModalCitizenship></studentReqModalCitizenship>   
             </b-col>
             <b-col>
+                <studentReqModalActivities></studentReqModalActivities>
             </b-col>
             <b-col>
             </b-col>
@@ -57,6 +58,8 @@
     import studentReqModalCourseLoad from "@/components/StudentReqModalCourseLoad.vue"
     import studentReqModalFinancialNeed from "@/components/StudentReqModalFinancialNeed.vue"
     import studentReqModalCitizenship from "@/components/StudentReqModalCitizenship.vue"
+    import studentReqModalActivities from "@/components/StudentReqModalActivities.vue"
+
     
   export default {
     components: {
@@ -69,7 +72,8 @@
         studentReqModalStudyYear,
         studentReqModalCourseLoad,
         studentReqModalFinancialNeed,
-        studentReqModalCitizenship
+        studentReqModalCitizenship,
+        studentReqModalActivities
     },
     data() {
       return {
@@ -83,7 +87,8 @@
               studyYear: false,
               courseLoad: false,
               financialNeed: false,
-              citizenship: false
+              citizenship: false,
+              activities: false
           },
           age: {
               selectedAge: [16, 65],
@@ -123,6 +128,10 @@
           },
           citizenship: {
               selectedCitizenship: 'Any',
+              importance: 0
+          },
+          activities: {
+              selectedActivities: ['Any'],
               importance: 0
           }
       }
