@@ -1,13 +1,14 @@
 <template>
     <b-form @save="onSave" @cancel="onCancel">
         <b-form-group
-            id = "input-Name-private"
+            id = "donarNamePrivate"
             label = "Donor Name: "
             label-for = "input-Name-private"
             label-cols-lg = "3"
+            label-cols-sm = "4"
         >
             <b-form-input
-                id = "input-Name-private"
+                id = "donarNameInputPrivate"
                 v-model = "name"
                 required
                 placeholder = ""

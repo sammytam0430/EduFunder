@@ -19,7 +19,27 @@
                 <studentReqModalStudyField></studentReqModalStudyField>
             </b-col>
             <b-col>
-                
+                <studentReqModalStudySchool></studentReqModalStudySchool>
+            </b-col>
+        </b-row>
+        <b-row class="text-center mb-3">
+            <b-col>
+                <studentReqModalStudyYear></studentReqModalStudyYear>   
+            </b-col>
+            <b-col>
+                <studentReqModalCourseLoad></studentReqModalCourseLoad>
+            </b-col>
+            <b-col>
+                <studentReqModalFinancialNeed></studentReqModalFinancialNeed>
+            </b-col>
+        </b-row>
+        <b-row class="text-center mb-3">
+            <b-col>
+                <studentReqModalCitizenship></studentReqModalCitizenship>   
+            </b-col>
+            <b-col>
+            </b-col>
+            <b-col>
             </b-col>
         </b-row>
         
@@ -32,6 +52,11 @@
     import studentReqModalGender from "@/components/StudentReqModalGender.vue"
     import studentReqModalSchoolLevel from "@/components/StudentReqModalSchoolLevel.vue"
     import studentReqModalStudyField from "@/components/StudentReqModalStudyField.vue"
+    import studentReqModalStudySchool from "@/components/StudentReqModalStudySchool.vue"
+    import studentReqModalStudyYear from "@/components/StudentReqModalStudyYear.vue"
+    import studentReqModalCourseLoad from "@/components/StudentReqModalCourseLoad.vue"
+    import studentReqModalFinancialNeed from "@/components/StudentReqModalFinancialNeed.vue"
+    import studentReqModalCitizenship from "@/components/StudentReqModalCitizenship.vue"
     
   export default {
     components: {
@@ -39,7 +64,12 @@
         studentReqModalAge,
         studentReqModalGender,
         studentReqModalSchoolLevel,
-        studentReqModalStudyField
+        studentReqModalStudyField,
+        studentReqModalStudySchool,
+        studentReqModalStudyYear,
+        studentReqModalCourseLoad,
+        studentReqModalFinancialNeed,
+        studentReqModalCitizenship
     },
     data() {
       return {
@@ -48,7 +78,12 @@
               age: false,
               province: false,
               gender: false,
-              studyField: false
+              studyField: false,
+              studySchool: false,
+              studyYear: false,
+              courseLoad: false,
+              financialNeed: false,
+              citizenship: false
           },
           age: {
               selectedAge: [16, 65],
@@ -69,7 +104,27 @@
           studyFields: {
               selectedStudyFields: ['Any field of study'],
               importance: 0
-          } 
+          },
+          studySchools: {
+              selectedStudySchools: ['Any school of study'],
+              importance: 0
+          },
+          studyYear: {
+              selectedStudyYear: 'Any year of study',
+              importance: 0
+          },
+          courseLoad: {
+              selectedCourseLoad: 'Full-time or Part-time',
+              importance: 0
+          },
+          financialNeed: {
+              selectedFinancialNeed: 'No',
+              importance: 0
+          },
+          citizenship: {
+              selectedCitizenship: 'Any',
+              importance: 0
+          }
       }
     },
     watch: {

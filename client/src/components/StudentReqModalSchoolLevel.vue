@@ -1,7 +1,8 @@
 <template>
   <b-container>
-    <b-form-checkbox @change="schoolLevelSelected()" value="SchoolLevel" button :button-variant="checked"> Level of Study </b-form-checkbox>
-    <b-modal id="studReqSchoolLevelModal" ref="modelSchoolLevel" title="SchoolLevel"  @ok="returnData">
+    <b-button @click="schoolLevelSelected()" value="SchoolLevel" :variant="checked"> Level of Study </b-button>
+    <b-modal id="studReqSchoolLevelModal" ref="modelSchoolLevel" title="SchoolLevel"  
+      @ok="returnData" @close="closeModal" @cancel="closeModal">
         <p>Select perferred level of study:</p>
         <b-form-checkbox-group
           id="checkboxStudReq"
@@ -35,9 +36,6 @@
             <b-col>
                 <b-form-checkbox value="Doctorate">Doctorate</b-form-checkbox>
             </b-col>
-          </b-row>
-          <b-row>
-            
           </b-row>
           
         </b-form-checkbox-group>
@@ -82,6 +80,14 @@ import importanceSlider from "@/components/ImportanceSlider.vue"
         this.$parent.selectedCriteria.schoolLevel = true;
 
         this.$nextTick(()=>{
+          this.$bvModal.hide('studReqSchoolLevelModal');
+        })
+      },
+      closeModal(bvModalEvt) {
+          bvModalEvt.preventDefault();
+          this.schoolLevelSelected();
+
+          this.$nextTick(()=>{
           this.$bvModal.hide('studReqSchoolLevelModal');
         })
       }

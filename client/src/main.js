@@ -4,6 +4,7 @@ import router from "./router";
 import VueSession from "vue-session";
 import BootstrapVue from "bootstrap-vue";
 import VueFormWizard from 'vue-form-wizard'
+import Vuelidate from "vuelidate"
 import * as VueGoogleMaps from "vue2-google-maps";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faUserGraduate } from "@fortawesome/free-solid-svg-icons";
@@ -33,6 +34,7 @@ Vue.use(VueGoogleMaps, {
   }
 });
 Vue.use(VueFormWizard);
+Vue.use(Vuelidate);
 new Vue({
   router,
   render: h => h(App)

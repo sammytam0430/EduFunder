@@ -1,7 +1,8 @@
 <template>
   <b-container>
-    <b-form-checkbox @change="ageSelected()" value="Age" button :button-variant="checked"> Age </b-form-checkbox>
-    <b-modal id="studReqAgeModal" ref="modelAge" title="Select your preferred age" @ok="returnData">
+    <b-button @click="ageSelected()" value="Age" :variant="checked"> Age </b-button>
+    <b-modal id="studReqAgeModal" ref="modelAge" title="Select your preferred age" 
+      @ok="returnData" @close="closeModal" @cancel="closeModal">
         <b-container id = "slider">
           <p id = "titleAge"> Age: <strong>{{age[0]}} - {{age[1]}}</strong></p>
           <b-row class="mb-4 ">
@@ -55,6 +56,15 @@
         this.$parent.selectedCriteria.age = true;
 
         this.$nextTick(()=>{
+          this.$bvModal.hide('studReqAgeModal');
+        })
+      },
+      closeModal(bvModalEvt) {
+          bvModalEvt.preventDefault();
+
+          this.ageSelected();
+
+          this.$nextTick(()=>{
           this.$bvModal.hide('studReqAgeModal');
         })
       },
