@@ -12,7 +12,7 @@
     <!-- <b-form @submit.stop.prevent="onSubmit">
       <b-form-group id="example-input-group-1" label="Name" label-for="example-input-1">
         <b-form-input
-          id="example-input-1"
+          id="example-input-1"  
           name="example-input-1"
           v-model="$v.form.name.$model"
           :state="$v.form.name.$dirty ? !$v.form.name.$error : null"
@@ -32,9 +32,7 @@
 
       <b-col sm="3">
         <b-form-input :id="`type-${type}`" :type="type"
-          v-model="$v.form.name.$model"
-          :state="$v.form.name.$dirty ? !$v.form.name.$error : null"
-          aria-describedby="input-1-live-feedback"></b-form-input>
+          ></b-form-input>
 
           <b-form-invalid-feedback id="input-1-live-feedback">
           This is a required field and must be at least 3 characters.
@@ -47,7 +45,9 @@
       </b-col>
       <b-col sm="3">
         
-        <b-form-input id=type-date type="date"></b-form-input>
+        <b-form-input id=type-date type="date"
+         >
+        </b-form-input>
       </b-col>
     </b-row>
     <b-row class="gender">
@@ -69,22 +69,35 @@
         <label><code>Current Location: </code></label>
       </b-col>
       <b-col class="address" sm="3">
-        <b-form-input placeholder="City"></b-form-input>
-        <b-form-input id=address placeholder="Country"></b-form-input>
-        <b-form-input id=address placeholder="Postal/Zip code"></b-form-input>
+        <b-form-input placeholder="City"
+        id="example-input-1"  
+          name="example-input-1"
+          v-model="$v.form.city.$model"
+          :state="$v.form.city.$dirty ? !$v.form.city.$error : null"
+          aria-describedby="input-1-live-feedback"
+          ></b-form-input>
+          <b-form-invalid-feedback id="input-1-live-feedback">
+          This is a required field.
+        </b-form-invalid-feedback>
+        <b-form-input id=address placeholder="Country"
+        ></b-form-input>
+        <b-form-input id=address placeholder="Postal/Zip code"
+       ></b-form-input>
       </b-col>
     </b-row>
     <b-row class="my-4">
       <b-col sm="2">
-        <label><code>Coutnry of Citizenship: </code></label>
+        <label><code>Country of Citizenship: </code></label>
       </b-col>
-      <b-col sm="2">
-        <b-form-input id=Country placeholder="Country" v-b-tooltip.hover title="Tooltip directive content" required></b-form-input>
+      <b-col cols="2">
+      <div class="degreeLevel">
+        <b-form-select v-model="selected" :options="citizenship"></b-form-select>
+      </div>
       </b-col>
     </b-row>
     <b-row class="my-4">
       <b-col sm="2">
-        <label><code>Langue Fluency: </code></label>
+        <label><code>Language Fluency: </code></label>
       </b-col>
       <b-col sm="2">
         <b-form-input id=Language placeholder="Language"></b-form-input>
@@ -100,7 +113,7 @@
       value="accepted"
       unchecked-value="not_accepted"
     >
-      I accept the terms and use<div>State: <strong>{{ status }}</strong></div>
+      I accept the terms and use statement<div>State: <strong>{{ status }}</strong></div>
     </b-form-checkbox>
 
     
@@ -115,7 +128,7 @@
     <div class="legend1">Highschool Education</div>
     <b-row class="my-4 text-right">
       <b-col sm="0">
-      <label><code>Current/Graduated High School </code></label>
+      <label><code>Current/Graduated High School: </code></label>
       </b-col>
       <b-col sm="3">
         <div class="options">
@@ -125,21 +138,21 @@
     </b-row>
     <b-row class="my-4 text-right">
       <b-col sm="2">
-      <label><code>Graduation Date </code></label>
+      <label><code>Graduation Date: </code></label>
       </b-col>
       <monthYearDD/>
     </b-row>
     
     <b-row class="my-4 text-right">
       <b-col sm="2">
-      <label><code>Academic Average</code></label>
+      <label><code>Academic Average: </code></label>
       </b-col>
       <averageDD/>
     </b-row>
     <div class="legend1">Post-Secondary eduation</div>
     <b-row class="my-4">
       <b-col sm="0">
-      <label><code>Current/Graduated University </code></label>
+      <label><code>Current/Graduated University: </code></label>
       </b-col>
       <b-col sm="3">
         <div class="options">
@@ -149,7 +162,7 @@
     </b-row>
     <b-row class="my-4 text-right">
       <b-col sm="2">
-      <label><code>Graduation Date </code></label>
+      <label><code>Graduation Date: </code></label>
       </b-col>
       <monthYearDD/>
     </b-row>
@@ -160,13 +173,14 @@
       <averageDD/>
     </b-row>
     </div>
+
   </tab-content>
   <!--Current Education -->
 
   <!--Educational Interest -->
    <tab-content title="Educational Interest">
      <div class="content-3">
-       <div class="legend1" style="margin-bottom:2%">Educational Interest</div>
+       <div class="legend1" style="margin-bottom:2%">Educational Interest: </div>
       <b-row class="my-4 text-right">
       <b-col sm="2">
         <label><code>School(s) of Interest:</code></label>
@@ -256,84 +270,20 @@
 
   <tab-content title="Scholarship Profile">
     <div class="content-4">
-    <b-row class="text-right my-3">
-      <b-col sm="2">
-      <label><code>Choose Academic Average:</code></label>
-      </b-col>
-      <averageDD/>
-    </b-row>
-    <b-row class="text-right my-3">
-        <b-col sm="2">
-           <label><code>Heritage:</code></label>
+      <b-row class="text-right my-3">
+        <b-col cols="4">
+          <label><code>Choose An Academic Average:</code></label>
         </b-col>
-        <b-col sm="2">
-          <b-form-input id=Country placeholder="American,African"></b-form-input>
-        </b-col>
+
+        <averageDD style="margin-left:10px;"/>
+
       </b-row>
-    <div
-    v-scroll="handleScroll"
-    class="box">
-    <div class="EC">
-      <div class="legend2">Extra-curricular Activities</div>
-      <div style="float:left;">
-      <b-form-group label="">
-        <b-form-checkbox-group  
-          v-model="selected"
-          :options="EC"
-          name="flavour-1a"
-          stacked
-        ></b-form-checkbox-group>
-      </b-form-group>
-      </div>
-      <div style="margin-left:25%">
-      <b-form-group label="">
-        <b-form-checkbox-group
-          v-model="selected"
-          :options="EC2"
-          name="flavour-1a"
-          stacked
-        ></b-form-checkbox-group>
-      </b-form-group>
-      </div>
+      <ecDD/>
+      <ethnicityDD/>
+      <heritageDD/>
+      <courseLoadDD/>
+      <financialNeedDD/>
     </div>
-    </div>
-    </div>
-
-    <div>
-    <b-form @submit.stop.prevent="onSubmit">
-      <b-form-group id="example-input-group-1" label="Name" label-for="example-input-1">
-        <b-form-input
-          id="example-input-1"
-          name="example-input-1"
-          v-model="$v.form.name.$model"
-          :state="$v.form.name.$dirty ? !$v.form.name.$error : null"
-          aria-describedby="input-1-live-feedback"
-        ></b-form-input>
-
-        <b-form-invalid-feedback id="input-1-live-feedback">
-          This is a required field and must be at least 3 characters.
-        </b-form-invalid-feedback>
-      </b-form-group>
-
-      <b-form-group id="example-input-group-2" label="Food" label-for="example-input-2">
-        <b-form-select
-          id="example-input-2"
-          name="example-input-2"
-          v-model="$v.form.food.$model"
-          :options="foods"
-          :state="$v.form.food.$dirty ? !$v.form.food.$error : null"
-          aria-describedby="input-2-live-feedback"
-        ></b-form-select>
-
-        <b-form-invalid-feedback id="input-2-live-feedback">
-          This is a required field.
-        </b-form-invalid-feedback>
-      </b-form-group>
-
-      <b-button type="submit" variant="primary" :disabled="$v.form.$invalid">Submit</b-button>
-    </b-form>
-  </div>
-
   </tab-content>
   <!-- Scholarship Profile -->
 </form-wizard>
@@ -347,6 +297,11 @@ import { validationMixin } from 'vuelidate'
 import { required, minLength } from 'vuelidate/lib/validators'
 import monthYearDD from "@/components/monthYearDD.vue";
 import averageDD from "@/components/averageDD.vue";
+import ethnicityDD from "@/components/ethnicityDD.vue"
+import heritageDD from "@/components/heritageDD.vue"
+import ecDD from "@/components/ecDD.vue"
+import courseLoadDD from "@/components/courseLoadDD.vue"
+import financialNeedDD from "@/components/financialNeedDD.vue"
 
 export default{
    mixins: [validationMixin],
@@ -358,22 +313,6 @@ export default{
           food: null
         },
         status:'not accepted',
-        EC: [
-          {value: 'a', text: 'Agricultural Development'},
-          {value: 'c', text: 'Archery'},    
-          {value: 'e', text: 'Badminton'},
-          {value: 'g', text: 'Christian Ministry'},
-          
-          {value: 'j', text: 'Cycling'},
-        ],
-        EC2: [
-          {value: 'b', text: 'Alpine Sking'},
-          {value: 'd', text: 'Basketball'},
-          {value: 'f', text: 'Boxing'},
-          {value: 'h', text: 'Canoeing'},
-          {value: 'k', text: 'Debate'},
-          {value: 'n', text: 'Diving'}
-        ],
         types: [
           'First Name',
           'Last Name',
@@ -402,6 +341,10 @@ export default{
           {value: null, text: 'Degree'},
           {value: null, text: 'Master'}          
         ],
+        citizenship:[
+          {value: 'Canadian', text:'Canadian'},
+          {value: 'American', text:'American'},
+        ],
         validations: {
           selected: {
             required
@@ -418,6 +361,10 @@ export default{
         name: {
           required,
           minLength: minLength(3)
+        },
+        city: {
+          required,
+          minLength: minLength(4)
         }
       }
     },
@@ -426,7 +373,12 @@ export default{
     FormWizard,
     TabContent,
     monthYearDD,
-    averageDD
+    averageDD,
+    ethnicityDD,
+    heritageDD,
+    ecDD,
+    courseLoadDD,
+    financialNeedDD
     },
     methods:{
       validate() {

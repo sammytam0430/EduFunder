@@ -5,10 +5,7 @@ img-alt="Image"
 img-top img-width="150px" 
 img-height="250px" -->
   <b-card-group deck v-for="row in formattedCards" :key="row" class="deck-group">
-    <b-card class="cards"
-            v-for="club in row"
-            :key="club"
-            >
+    <b-card class="cards" v-for="col in row" :key="col">
         <!--Campaign Title-->
         <div class="container">
             <img class="image" src="https://picsum.photos/300/300/?image=41"/>
@@ -59,7 +56,7 @@ img-height="250px" -->
                 value:6,
                 max:100,
                 cards: [
-                    {id:1, goalAmount:'500',goalDate:'300',amountRaised:'200'},
+                    {id:1, goalAmount:'500',goalDate:'300',amountRaised:'200', helloworld:'221'},
                     {id:2, goalAmount:'200',goalDate:'1300',amountRaised:'50'},
                     {id:3, goalAmount:'100',goalDate:'2300',amountRaised:'10'},
                     {id:4, goalAmount:'100',goalDate:'2300',amountRaised:'10'},

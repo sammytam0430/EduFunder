@@ -100,6 +100,7 @@
 
 <script>
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+import {FormWizard, TabContent} from 'vue-form-wizard'
 import { validationMixin } from 'vuelidate'
 import { required,email} from 'vuelidate/lib/validators'
 
