@@ -5,8 +5,8 @@ exports.up = function (knex, Promise) {
             table.string("userType").notNullable();
             table.string("email").notNullable().unique();
             table.string("password").notNullable();
+            table.string("name").notNullable();
             table.string("image");
-            table.string("name").notNullable().defaultTo("New User");
             table.bigInteger("phoneNumber").notNullable().defaultTo(0);
             table.string("city").notNullable().defaultTo("Not Specified");
             table.string("country").notNullable().defaultTo("Not Specified");
