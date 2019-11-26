@@ -9,8 +9,22 @@ import Vuelidate from 'vuelidate'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 import * as VueGoogleMaps from "vue2-google-maps";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faUserGraduate } from "@fortawesome/free-solid-svg-icons";
-import { faYoutube } from "@fortawesome/free-brands-svg-icons";
+import {
+  faUserGraduate,
+  faBell,
+  faSignOutAlt,
+  faColumns,
+  faUserFriends,
+  faThList,
+  faPlus,
+  faAngleDoubleDown,
+  faMapMarkerAlt,
+  faClock,
+  faTimes,
+  faSpa,
+  faSearch
+} from "@fortawesome/free-solid-svg-icons";
+import { faYoutube, faGithubAlt } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import VueSlider from 'vue-slider-component'
 import 'vue-slider-component/theme/default.css'
@@ -20,18 +34,28 @@ import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 
 library.add(
   faUserGraduate,
+  faBell,
+  faSignOutAlt,
+  faColumns,
+  faUserFriends,
+  faThList,
+  faPlus,
+  faAngleDoubleDown,
+  faMapMarkerAlt,
+  faClock,
+  faTimes,
+  faSpa,
+  faSearch,
   faYoutube,
+  faGithubAlt
 );
 Vue.component("font-awesome-icon", FontAwesomeIcon);
-<<<<<<< HEAD
 Vue.use(VueFormWizard);
 Vue.use(DateDropdown);
 Vue.use(Vuelidate);
-=======
 Vue.component('vue-slider', VueSlider)
 
 
->>>>>>> db75b0a581c195e4f75798bf6d4f7c8fe285e7ca
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
 Vue.use(VueSession);
