@@ -29,7 +29,7 @@ router.post("/", (req, res) => {
 // handle patch request and update a user
 router.patch("/:id", (req, res) => {
   db("users")
-    .where({ userID: req.params.id })
+    .where({ userId: req.params.id })
     .update(req.body)
     .returning("*")
     .then(data => {
@@ -40,7 +40,7 @@ router.patch("/:id", (req, res) => {
 // handle delete request and remove a user
 router.delete("/:id", (req, res) => {
   db("users")
-    .where({ userID: req.params.id })
+    .where({ userId: req.params.id })
     .del()
     .then(() => {
       res.json({ success: true });
