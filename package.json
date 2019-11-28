@@ -13,7 +13,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "bcrypt": "^3.0.7",
+=======
+    "animate.css": "^3.7.2",
+    "bcrypt": "^3.0.6",
+>>>>>>> 54a10ba5f7af2de1ac9b28945f574ff513155658
     "body-parser": "^1.19.0",
     "connect-history-api-fallback": "^1.6.0",
     "cors": "^2.8.5",
@@ -23,10 +28,14 @@
     "morgan": "^1.9.1",
     "nodemon": "^1.19.3",
     "pg": "^7.12.1",
+<<<<<<< HEAD
     "vue-date-dropdown": "^1.0.5",
     "vue-form-wizard": "^0.8.4",
     "vue-slider-component": "^3.0.43",
     "vuelidate": "^0.7.4"
+=======
+    "save": "^2.4.0"
+>>>>>>> 54a10ba5f7af2de1ac9b28945f574ff513155658
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
