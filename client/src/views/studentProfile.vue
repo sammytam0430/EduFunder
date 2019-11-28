@@ -298,6 +298,7 @@
           <b-form-invalid-feedback id="input-1-live-feedback">
             This is a required field.
           </b-form-invalid-feedback>
+          </div>
         </b-col>
       </b-row>
 
