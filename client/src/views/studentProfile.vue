@@ -5,9 +5,18 @@
   
   <div class="content-1">
    <!-- :before-change="()=>validate()"  -->
-  <tab-content title="Basic information" >
-    <b-container fluid >
-    <div class="legend">Basic info</div>
+  <tab-content title="Basic information"  >
+    <b-container fluid>
+      <b-row class="text-center">
+        <b-col cols="4">
+
+        </b-col>
+        <b-col cols="1">
+          <div class="legend">Basic info</div>
+        </b-col>
+        
+      </b-row>
+    
     <div>
     <!-- <b-form @submit.stop.prevent="onSubmit">
       <b-form-group id="example-input-group-1" label="Name" label-for="example-input-1">
@@ -25,12 +34,12 @@
       </b-form-group> -->
     </div>
     <b-row class="my-4 text-right">
-      <b-col sm="1">
+      <b-col sm="5">
         <label><code>First Name: </code></label>
       </b-col >
       <b-col sm="3">
         <b-form-input v-model="$v.form.name.$model" 
-        :state="$v.form.name.$dirty ? !$v.form.name.$error : null"
+        :state="$v.form.name.$dirty ? !$v.form.name.$anyError : null"
         aria-describedby="input-1-live-feedback"
         ></b-form-input>
         <b-form-invalid-feedback id="input-1-live-feedback">
@@ -41,12 +50,12 @@
       </b-col>
     </b-row>
     <b-row class="my-4 text-right">
-      <b-col sm="1">
+      <b-col sm="5">
         <label><code>Last Name: </code></label>
       </b-col >
       <b-col sm="3">
         <b-form-input v-model="$v.form.lname.$model" 
-        :state="$v.form.lname.$dirty ? !$v.form.lname.$error : null"
+        :state="$v.form.lname.$dirty ? !$v.form.lname.$anyError : null"
         aria-describedby="input-1-live-feedback"
         ></b-form-input>
         <b-form-invalid-feedback id="input-1-live-feedback">
@@ -55,12 +64,12 @@
       </b-col>
     </b-row>
     <b-row class="my-4 text-right">
-      <b-col sm="1">
+      <b-col sm="5">
         <label><code>Email: </code></label>
       </b-col >
       <b-col sm="3">
         <b-form-input v-model="$v.form.email.$model" 
-        :state="$v.form.email.$dirty ? !$v.form.email.$error : null"
+        :state="$v.form.email.$dirty ? !$v.form.email.$anyError : null"
         aria-describedby="input-1-live-feedback"
         ></b-form-input>
         <b-form-invalid-feedback id="input-1-live-feedback">
@@ -69,7 +78,7 @@
       </b-col>
     </b-row>
     <b-row class="my-2 text-right">
-      <b-col sm="1">
+      <b-col sm="5">
         <label><code>Birthday:</code></label>
       </b-col>
       <b-col sm="3">
@@ -77,16 +86,16 @@
         <b-form-input id=type-date type="date"
         v-model="$v.form.birthday.$model" 
         :state="$v.form.birthday.$dirty ? !$v.form.birthday.$error : null"
-        aria-describedby="input-1-live-feedback"
+        aria-describedby="input-2-live-feedback"
          >
         </b-form-input>
-        <b-form-invalid-feedback id="input-1-live-feedback">
+        <b-form-invalid-feedback id="input-2-live-feedback">
           Please enter your birthday
         </b-form-invalid-feedback>
       </b-col>
     </b-row>
-    <b-row class="gender">
-      <b-col sm="0">
+    <b-row class="my-3 text-right">
+      <b-col cols="5">
         <label><code>Gender:</code></label>
       </b-col>
       <b-col sm="2">
@@ -102,7 +111,7 @@
       </b-col>
     </b-row>
     <b-row class="my-2 text-right">
-      <b-col sm="1">
+      <b-col sm="5">
         
         <label><code>Current Location: </code></label>
       </b-col>
@@ -138,8 +147,8 @@
         </b-form-invalid-feedback>
       </b-col>
     </b-row>
-    <b-row class="my-4">
-      <b-col sm="2">
+    <b-row class="my-4 text-right">
+      <b-col sm="5">
         <label><code>Country of Citizenship: </code></label>
       </b-col>
       <b-col cols="2">
@@ -155,15 +164,16 @@
       </b-col>
     </b-row>
     <b-row class="my-4">
-      <b-col sm="2">
+      <b-col cols="5 text-right">
         <label><code>Language Fluency: </code></label>
       </b-col>
+      
       <b-col sm="2"
       >
         <b-form-input id=Language placeholder="Language"
         name="example-input-1"
           v-model="$v.form.language.$model"
-          :state="$v.form.language.$dirty ? !$v.form.language.$error : null"></b-form-input>
+          :state="$v.form.language.$dirty ? !$v.form.language.$anyError : null"></b-form-input>
           <b-form-invalid-feedback id="input-1-live-feedback">
           This is a required field.
         </b-form-invalid-feedback>
@@ -171,7 +181,8 @@
     </b-row>
     </b-container>
     <div>
-      
+      <b-row class="my-4 text-center">
+    <b-col cols="12">
     <b-form-checkbox
       id="checkbox-1"
       v-model="status"
@@ -181,8 +192,8 @@
     >
       I accept the terms and use statement<div>State: <strong>{{ status }}</strong></div>
     </b-form-checkbox>
-
-    
+    </b-col>
+    </b-row>
     </div>
   </tab-content>
   </div>
@@ -191,9 +202,16 @@
   <!--Current Education -->
   <tab-content title="Current Education">
     <div class="content-2">
-    <div class="legend1">Highschool Education</div>
+      <b-row>
+        <b-col cols="4">
+
+        </b-col>
+        <b-col cols="8">
+            <div class="legend1">Highschool Education</div>
+        </b-col>
+      </b-row>
     <b-row class="my-4 text-right">
-      <b-col sm="0">
+      <b-col cols="5">
       <label><code>Current/Graduated High School: </code></label>
       </b-col>
       <b-col sm="3">
@@ -208,21 +226,28 @@
       </b-col>
     </b-row>
     <b-row class="my-4 text-right">
-      <b-col sm="2">
+      <b-col cols="5">
       <label><code>Graduation Date: </code></label>
       </b-col>
       <monthYearDD />
     </b-row>
     
     <b-row class="my-4 text-right">
-      <b-col sm="2">
+      <b-col cols="5">
       <label><code>Academic Average: </code></label>
       </b-col>
       <averageDD/>
     </b-row>
-    <div class="legend1">Post-Secondary eduation</div>
-    <b-row class="my-4">
-      <b-col sm="0">
+    <b-row>
+      <b-col cols="4">
+
+      </b-col>
+      <b-col cols="8">
+        <div class="legend1">Post-Secondary eduation</div>
+      </b-col>
+    </b-row>
+    <b-row class="my-4 text-right">
+      <b-col cols="5">
       <label><code>Current/Graduated University: </code></label>
       </b-col>
       <b-col sm="3">
@@ -236,13 +261,13 @@
       </b-col>
     </b-row>
     <b-row class="my-4 text-right">
-      <b-col sm="2">
+      <b-col sm="5">
       <label><code>Graduation Date: </code></label>
       </b-col>
       <monthYearDD/>
     </b-row>
     <b-row class="my-4 text-right">
-      <b-col sm="2">
+      <b-col sm="5">
       <label><code>Academic Average:</code></label>
       </b-col>
       <averageDD/>
@@ -255,9 +280,16 @@
   <!--Educational Interest -->
    <tab-content title="Educational Interest">
      <div class="content-3">
-       <div class="legend1" style="margin-bottom:2%">Educational Interest: </div>
+       <b-row>
+        <b-col cols="4">
+
+        </b-col>
+        <b-col cols="8">
+           <div class="legend1">Educational Interest: </div>
+        </b-col>
+      </b-row>
       <b-row class="my-4 text-right">
-      <b-col sm="2">
+      <b-col sm="5">
         <label><code>School(s) of Interest:</code></label>
       </b-col>
       <b-col sm="3">
@@ -272,17 +304,20 @@
     </b-row>
 
     <b-row>
-      <b-form-group label="" style="margin-left:17%">
+      <b-col cols="5">
+      </b-col>
+      <b-col cols="4">
+      <b-form-group label="">
       <b-form-radio-group
-        v-model="selected"
         :options="schoolPref"
-        name="radio-inline"
+        name=""
       ></b-form-radio-group>
     </b-form-group>
+    </b-col>
     </b-row>
 
     <b-row class="my-4 text-right">
-      <b-col sm="2">
+      <b-col sm="5">
         <label><code>Field(s) of study interest:</code></label>
       </b-col>
       <b-col sm="3">
@@ -297,17 +332,23 @@
     </b-row>
 
     <b-row>
-      <b-form-group label="" style="margin-left:17%">
+      <b-col cols="5">
+
+      </b-col>
+      <b-col cols="4">
+
+      
+      <b-form-group label="">
       <b-form-radio-group
-        v-model="selected"
         :options="fieldPref"
         name="radio-inline"
       ></b-form-radio-group>
     </b-form-group>
+    </b-col>
     </b-row>
 
     <b-row class="my-4 text-right">
-      <b-col sm="2">
+      <b-col sm="5">
       <label><code>Degree Level of interest:</code></label>
       </b-col>
       <b-col md="2">
@@ -322,7 +363,7 @@
       </b-row>
 
       <b-row class="my-4 text-right">
-      <b-col sm="2">
+      <b-col sm="5">
         <label><code>Starting Date:</code></label>
       </b-col>
       <div style="padding-left:1%;">
@@ -331,7 +372,7 @@
       </b-row>
 
       <b-row class="text-right">
-        <b-col sm="2">
+        <b-col sm="5">
            <label><code>Location interest:</code></label>
         </b-col>
         <b-col sm="2">
@@ -351,6 +392,14 @@
 
   <tab-content title="Scholarship Profile">
     <div class="content-4">
+      <b-row>
+        <b-col cols="2">
+
+        </b-col>
+        <b-col cols="10">
+           <div class="legend1">Scholarship Profile:   </div>
+        </b-col>
+      </b-row>
       <b-row class="text-right my-3">
         <b-col cols="4">
           <label><code>Choose An Academic Average:</code></label>
@@ -383,6 +432,7 @@ import heritageDD from "@/components/heritageDD.vue"
 import ecDD from "@/components/ecDD.vue"
 import courseLoadDD from "@/components/courseLoadDD.vue"
 import financialNeedDD from "@/components/financialNeedDD.vue"
+import 'animate.css/animate.min.css'
 
 export default{
    mixins: [validationMixin],
@@ -399,6 +449,7 @@ export default{
           postalCode: null,
           birthday: null,
           gender: null,
+          citizenship: null
         },
         form2: {
           highschool: null,
@@ -419,25 +470,25 @@ export default{
         selected:[],
         options: [
           { value: null, text: 'Please select an option' },
-          { value: 'a', text: 'Student' },
-          { value: 'b', text: 'Mature Student' },
-          { value: 'c', text: 'Parent of a student'}
+          { value: 'Student', text: 'Student' },
+          { value: 'MatureStudent', text: 'Mature Student' },
+          { value: 'ParentStudent', text: 'Parent of a student'}
         ],
         gender: [
-          { value: 'a', text: 'Male'},
-          { value: 'b', text: 'Female'}
+          { value: 'Male', text: 'Male'},
+          { value: 'Female', text: 'Female'}
         ],
         schoolPref:[
-          {value: 'A', text: 'Not Decided'},
-          {value: 'B', text: 'I do not see school of my interest'}
+          {value: 'Not Decided', text: 'Not Decided'},
+          {value: 'NA', text: 'I do not see school of my interest'}
         ],
         fieldPref:[
-          {value: 'A', text: 'Not Decided'}
+          {value: 'Not Decided', text: 'Not Decided'}
         ],
         degreeLevel:[
-          {value: null, text: 'Diploma'},
-          {value: null, text: 'Degree'},
-          {value: null, text: 'Master'}          
+          {value: 'Diploma', text: 'Diploma'},
+          {value: 'Degree', text: 'Degree'},
+          {value: 'Master', text: 'Master'}          
         ],
         citizenship:[
           {value: 'Canadian', text:'Canadian'},
@@ -456,9 +507,6 @@ export default{
         email:{
           required,
           email
-        },
-        food: {
-          required
         },
         name: {
           required,
@@ -556,22 +604,16 @@ export default{
     color:black;
   }
   .content-1{
-    width: 95%;
-    margin-left: 31%;
   }
   .legend{
-    width:7%;
-    text-align: center;
     background: #FDFDFD;
     border: 1px solid #DDD;
-    padding: 4px;
-    margin-top: 0.5%;
-    margin-bottom: 2%;
     border-radius: 5px;
+    padding: 4px;
     font-weight: bold;
   }
   .legend1{
-    width:20%;
+    width:40%;
     text-align: center;
     background: #F7F7F7;
     border: 1px solid #DDD;
@@ -582,21 +624,8 @@ export default{
     border-radius: 5px;
     font-weight: bold;
   }
-  .legend2{
-    width:20%;
-    text-align: center;
-    background: #F7F7F7;
-    border: 1px solid #DDD;
-    padding: 4px;
-    margin-top: 0.5%;
-    margin-bottom: 2%;
-    margin-left: 10%;
-    border-radius: 5px;
-    font-weight: bold;
-  }
   .content-2{
     width:95%;
-    margin-left: 31%;
   }
   #address{
     margin-top: 4%;
@@ -613,11 +642,16 @@ export default{
   }
   .content-3{
     width:95%;
-    margin-left:28%;
-    
   }
   .content-4{
     width:95%;
     padding-left:20%;
+  }
+  .wizard-tab-content {
+  display: flex;
+  }
+  .wizard-tab-container {
+    display: block;
+    animation: fadeInRight 0.3s;
   }
 </style>

@@ -6,6 +6,7 @@ import BootstrapVue from "bootstrap-vue";
 import VueFormWizard from 'vue-form-wizard'
 import DateDropdown from 'vue-date-dropdown'
 import Vuelidate from 'vuelidate'
+import 'animate.css/animate.min.css'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 import * as VueGoogleMaps from "vue2-google-maps";
 import { library } from "@fortawesome/fontawesome-svg-core";
