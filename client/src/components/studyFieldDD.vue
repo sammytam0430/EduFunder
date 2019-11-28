@@ -1,77 +1,109 @@
 <template>
-    <b-row class="my-4 text-right">
-            <b-col sm="4">
-                    <label><code>Field of Study(*): </code></label>
-            </b-col>
-            <b-col sm="4">
-                <div>
-                    <b-form-select v-model="selected" :options="studyField"></b-form-select>
-                </div>
-            </b-col>
-    </b-row>
+  <b-row class="my-4 text-right">
+    <b-col sm="4">
+      <label>
+        <code>Field of Study(*):</code>
+      </label>
+    </b-col>
+    <b-col sm="4">
+      <div>
+        <b-form-select v-model="selected" :options="studyField"></b-form-select>
+      </div>
+    </b-col>
+  </b-row>
 </template>
 <script>
-export default{
-    name: "studyFieldDD",
-    data(){
-        return{
-        studyField:[
-            {value: "uc", text: 'Uncategorized'},
-            {value: "uc", text: 'Accounting & Finance'},
-            {value: "uc", text: 'Aeronatuical & Manufacturing Engineering'},
-            {value: "uc", text: 'Agriculture & Forestry'},
-            {value: "uc", text: 'American Studies'},
-            {value: "uc", text: 'Anatomy & Physiology'},
-            {value: "uc", text: 'Anthropology'},
-            {value: "uc", text: 'Archaeology'},
-            {value: "uc", text: 'Architecture'},
-            {value: "uc", text: 'Art & Design'},
-            {value: "uc", text: 'Aural & Oral Sciences'},            
-            {value: "Behaviour Intervantion", text: 'Behaviour Intervantion'},
-            {value: "Biological Sciences", text: 'Biological Sciences'},
-            {value: "uc", text: 'Building'},
-            {value: "uc", text: 'Business & Management Studies'},
-            {value: "uc", text: 'Career & Employment Preparation'},
-            {value: "uc", text: 'Carpentry'},
-            {value: "uc", text: 'Celtic Studies'},
-            {value: "uc", text: 'Chemical Engineering'},
-            {value: "uc", text: 'Chemistry'},
-            {value: "uc", text: 'Child & Youth Services'},
-            {value: "uc", text: 'Civil Engineering'},
-            {value: "uc", text: 'Classics & Ancient History'},
-            {value: "uc", text: 'Commerce & Business'},
-            {value: "uc", text: 'Communication & Media Studies'},
-            {value: "uc", text: 'Community Health Worker'},
-            {value: "uc", text: 'Complementary Medicine'},
-            {value: "uc", text: 'Computer Science'},
-            {value: "uc", text: 'Counselling'},
-            {value: "uc", text: 'Creative Writing'},
-            {value: "uc", text: 'Criminology'},
-            {value: "uc", text: 'Culinary Arts'},
-            {value: "uc", text: 'Dental Assistance'},
-            {value: "uc", text: 'Dentistry'},
-            {value: "uc", text: 'Digital Arts'},
-            {value: "uc", text: 'Drama, Dance & Cinematics'},
-            {value: "uc", text: 'E-commerce'},
-            {value: "uc", text: 'Early Childhood Education'},
-            {value: "uc", text: 'East & South Asian Studies'},
-            {value: "uc", text: 'Economics'},
-            {value: "uc", text: 'Education'},
-            {value: "uc", text: 'Elctrical &Electronic Engineering'},
-            {value: "uc", text: 'English'},
-            {value: "uc", text: 'Fashion'},
-            {value: "uc", text: 'Film Making'},
-            {value: "uc", text: 'Food Science'},
-            {value: "uc", text: 'Forensic Science'},
-            {value: "uc", text: 'French'},
-            {value: "uc", text: 'General Engineering'},
-            {value: "uc", text: 'Geography & Environmental Sciences'},
-            {value: "uc", text: 'Geology'},
-            {value: "uc", text: 'German'},
-            {value: "uc", text: 'Health Care'},
-            {value: "uc", text: 'History'}
-            ]
-        }
-    }
+export default {
+  name: "studyFieldDD",
+  data() {
+    return {
+      studyField: [
+        { value: "Uncategorized", text: "Uncategorized" },
+        { value: "Accounting & Finance", text: "Accounting & Finance" },
+        {
+          value: "Aeronatuical & Manufacturing Engineering",
+          text: "Aeronatuical & Manufacturing Engineering"
+        },
+        { value: "Agriculture & Forestry", text: "Agriculture & Forestry" },
+        { value: "American Studies", text: "American Studies" },
+        { value: "Anatomy & Physiology", text: "Anatomy & Physiology" },
+        { value: "Anthropology", text: "Anthropology" },
+        { value: "Archaeology", text: "Archaeology" },
+        { value: "Architecture", text: "Architecture" },
+        { value: "Art & Design", text: "Art & Design" },
+        { value: "Aural & Oral Sciences", text: "Aural & Oral Sciences" },
+        { value: "Behaviour Intervantion", text: "Behaviour Intervantion" },
+        { value: "Biological Sciences", text: "Biological Sciences" },
+        { value: "Building", text: "Building" },
+        {
+          value: "Business & Management Studies",
+          text: "Business & Management Studies"
+        },
+        {
+          value: "Career & Employment Preparation",
+          text: "Career & Employment Preparation"
+        },
+        { value: "Carpentry", text: "Carpentry" },
+        { value: "Celtic Studies", text: "Celtic Studies" },
+        { value: "Chemical Engineering", text: "Chemical Engineering" },
+        { value: "Chemistry", text: "Chemistry" },
+        { value: "Child & Youth Services", text: "Child & Youth Services" },
+        { value: "Civil Engineering", text: "Civil Engineering" },
+        {
+          value: "Classics & Ancient History",
+          text: "Classics & Ancient History"
+        },
+        { value: "Commerce & Business", text: "Commerce & Business" },
+        {
+          value: "Communication & Media Studies",
+          text: "Communication & Media Studies"
+        },
+        { value: "Community Health Worker", text: "Community Health Worker" },
+        { value: "Complementary Medicine", text: "Complementary Medicine" },
+        { value: "Computer Science", text: "Computer Science" },
+        { value: "Counselling", text: "Counselling" },
+        { value: "Creative Writing", text: "Creative Writing" },
+        { value: "Criminology", text: "Criminology" },
+        { value: "Culinary Arts", text: "Culinary Arts" },
+        { value: "Dental Assistance", text: "Dental Assistance" },
+        { value: "Dentistry", text: "Dentistry" },
+        { value: "Digital Arts", text: "Digital Arts" },
+        {
+          value: "Drama, Dance & Cinematics",
+          text: "Drama, Dance & Cinematics"
+        },
+        { value: "E-commerce", text: "E-commerce" },
+        {
+          value: "Early Childhood Education",
+          text: "Early Childhood Education"
+        },
+        {
+          value: "East & South Asian Studies",
+          text: "East & South Asian Studies"
+        },
+        { value: "Economics", text: "Economics" },
+        { value: "Education", text: "Education" },
+        {
+          value: "Elctrical & Electronic Engineering",
+          text: "Elctrical & Electronic Engineering"
+        },
+        { value: "English", text: "English" },
+        { value: "Fashion", text: "Fashion" },
+        { value: "Film Making", text: "Film Making" },
+        { value: "Food Science", text: "Food Science" },
+        { value: "Forensic Science", text: "Forensic Science" },
+        { value: "French", text: "French" },
+        { value: "General Engineering", text: "General Engineering" },
+        {
+          value: "Geography & Environmental Sciences",
+          text: "Geography & Environmental Sciences"
+        },
+        { value: "Geology", text: "Geology" },
+        { value: "German", text: "German" },
+        { value: "Health Care", text: "Health Care" },
+        { value: "History", text: "History" }
+      ]
+    };
+  }
 };
 </script>
