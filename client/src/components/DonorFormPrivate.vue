@@ -8,9 +8,9 @@
         >
             <b-form-input
                 id = "donarNameInputPrivate"
-                v-model = "$v.donorName.$model"
+                v-model = "$v.donorPrivate.donorName.$model"
                 placeholder = ""
-                :state="$v.donorName.$dirty ? !$v.donorName.$error : null"
+                :state="$v.donorPrivate.donorName.$dirty ? !$v.donorPrivate.donorName.$error : null"
                 aria-describedby="donorNameFeedback"
             ></b-form-input>
             <b-form-invalid-feedback id="donorNameFeedback">
@@ -26,9 +26,9 @@
         >
             <b-form-input
                 id = "linkedinProfileInputPrivate"
-                v-model = "$v.linkedinProfile.$model"
+                v-model = "$v.donorPrivate.linkedinProfile.$model"
                 placeholder = ""
-                :state="$v.linkedinProfile.$dirty ? !$v.linkedinProfile.$anyError : null"
+                :state="$v.donorPrivate.linkedinProfile.$dirty ? !$v.donorPrivate.linkedinProfile.$anyError : null"
                 aria-describedby="linkedinProfileFeedback"
             ></b-form-input>
             <b-form-invalid-feedback id="linkedinProfileFeedback">
@@ -70,9 +70,9 @@
         >
             <b-form-input
                 id = "contactInputPrivate"
-                v-model = "$v.contact.$model"
+                v-model = "$v.donorPrivate.contact.$model"
                 placeholder = "e.g. 6041234567"
-                :state="$v.contact.$dirty ? !$v.contact.$anyError : null"
+                :state="$v.donorPrivate.contact.$dirty ? !$v.donorPrivate.contact.$anyError : null"
                 aria-describedby="contactFeedback"
             ></b-form-input>
             <b-form-invalid-feedback id="contactFeedback">
@@ -88,9 +88,9 @@
         >
             <b-form-input
                 id = "addressInputPrivate"
-                v-model = "$v.address.$model"
+                v-model = "$v.donorPrivate.address.$model"
                 placeholder = ""
-                :state="$v.address.$dirty ? !$v.address.$error : null"
+                :state="$v.donorPrivate.address.$dirty ? !$v.donorPrivate.address.$error : null"
                 aria-describedby="addressFeedback"
             ></b-form-input>
             <b-form-invalid-feedback id="addressFeedback">
@@ -106,9 +106,9 @@
         >
             <b-form-input
                 id = "coutryInputPrivate"
-                v-model = "$v.country.$model"
+                v-model = "$v.donorPrivate.country.$model"
                 placeholder = ""
-                :state="$v.country.$dirty ? !$v.country.$error : null"
+                :state="$v.donorPrivate.country.$dirty ? !$v.donorPrivate.country.$error : null"
                 aria-describedby="countryFeedback"
             ></b-form-input>
             <b-form-invalid-feedback id="countryFeedback">
@@ -124,9 +124,9 @@
         >
             <b-form-input
                 id = "emailInputPrivate"
-                v-model = "$v.email.$model"
+                v-model = "$v.donorPrivate.email.$model"
                 placeholder = ""
-                :state="$v.email.$dirty ? !$v.email.$anyError : null"
+                :state="$v.donorPrivate.email.$dirty ? !$v.donorPrivate.email.$anyError : null"
                 aria-describedby="emailFeedback"
             ></b-form-input>
             <b-form-invalid-feedback id="emailFeedback">
@@ -150,44 +150,48 @@ export default {
     mixins: [validationMixin],
     data() {
       return {
-          donorName: '',
-          country: '',
-          linkedinProfile: '',
-          contact: '',
-          address: '',
-          email: ''
+         donorPrivate: {
+            donorName: '',
+            country: '',
+            linkedinProfile: '',
+            contact: '',
+            address: '',
+            email: ''
+         }
       }
     },
     validations: {
-        donorName: {
-            required
-        },
-        contact: {
-            required,
-            numeric,	
-            minLength: minLength(10),
-            maxLength: maxLength(10)
-        },
-        linkedinProfile: {
-            required,
-            url
-        },
-        address: {
-            required
-        },
-        country: {
-            required,
-            alpha
-        },
-        email: {
-            required,
-            email
+        donorPrivate: {
+            donorName: {
+                required
+            },
+            contact: {
+                required,
+                numeric,	
+                minLength: minLength(10),
+                maxLength: maxLength(10)
+            },
+            linkedinProfile: {
+                required,
+                url
+            },
+            address: {
+                required
+            },
+            country: {
+                required,
+                alpha
+            },
+            email: {
+                required,
+                email
+            }
         }
     },
     methods: {
         onSubmit() {
-            this.$v.$touch();
-            if (this.$v.$anyError) {
+            this.$v.donorPrivate.$touch();
+            if (this.$v.donorPrivate.$anyError) {
             return
             }
         }

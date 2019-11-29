@@ -8,7 +8,7 @@
             label = "Is it public or private? "
             label-for = "radioPrivatePublicScholarship">
                     
-            <b-form-radio-group id="radioPrivatePublicScholarship" v-model="basicInfo.visibility" name="radio-sub-component">
+            <b-form-radio-group id="radioPrivatePublicScholarship" v-model="basicInfo.scholarshipVisibility" name="radio-sub-component">
                 <b-row class = "text-center">
                     <b-col sm="6">
                             <b-form-radio value="Public">Public</b-form-radio>
@@ -28,9 +28,9 @@
 
             <b-form-input
                 id = "inputNameSchoarship"
-                v-model = "$v.basicInfo.name.$model"
+                v-model = "$v.basicInfo.scholarshipName.$model"
                 placeholder = ""
-                :state="$v.basicInfo.name.$dirty ? !$v.basicInfo.name.$error : null"
+                :state="$v.basicInfo.scholarshipName.$dirty ? !$v.basicInfo.scholarshipName.$error : null"
                 aria-describedby="nameFeedback"
             ></b-form-input>
             <b-form-invalid-feedback id="nameFeedback">
@@ -48,10 +48,10 @@
                     <b-input-group prepend="$">
                         <b-form-input
                             id = "inputAmountScholarship"
-                            v-model = "$v.basicInfo.amount.$model"
+                            v-model = "$v.basicInfo.scholarshipAmount.$model"
                             class="text-right"
                             placeholder = "0.00"
-                            :state="$v.basicInfo.amount.$dirty ? !$v.basicInfo.amount.$anyError : null"
+                            :state="$v.basicInfo.scholarshipAmount.$dirty ? !$v.basicInfo.scholarshipAmount.$anyError : null"
                             aria-describedby="amountFeedback"
                         ></b-form-input>
                         
@@ -69,9 +69,9 @@
                 >
                     <b-form-input
                         id = "inputRecipientsScholarship"
-                        v-model = "$v.basicInfo.recipient.$model"
+                        v-model = "$v.basicInfo.scholarshipRecipient.$model"
                         placeholder = ""
-                        :state="$v.basicInfo.recipient.$dirty ? !$v.basicInfo.recipient.$anyError : null"
+                        :state="$v.basicInfo.scholarshipRecipient.$dirty ? !$v.basicInfo.scholarshipRecipient.$anyError : null"
                         aria-describedby="recipientFeedback"
                     ></b-form-input>
                     <b-form-invalid-feedback id="recipientFeedback">
@@ -94,8 +94,8 @@
                         label-for = "selectStartScholarship"
                         >
                         <b-form-input type = "date" 
-                            v-model = "$v.basicInfo.dateStart.$model"
-                            :state="$v.basicInfo.dateStart.$dirty ? (!$v.basicInfo.dateStart.$error) && (compareDate(basicInfo.dateStart, basicInfo.dateEnd)) : null"
+                            v-model = "$v.basicInfo.scholarshipDateStart.$model"
+                            :state="$v.basicInfo.scholarshipDateStart.$dirty ? (!$v.basicInfo.scholarshipDateStart.$error) && (compareDate(basicInfo.scholarshipDateStart, basicInfo.scholarshipDateEnd)) : null"
                             aria-describedby="dateStartFeedback"
                         ></b-form-input>  
                         <b-form-invalid-feedback id="dateStartFeedback">
@@ -110,8 +110,8 @@
                         label-for = "selectEndScholarship"
                         >
                         <b-form-input type = "date" 
-                            v-model = "$v.basicInfo.dateEnd.$model"
-                            :state="$v.basicInfo.dateEnd.$dirty ? (!$v.basicInfo.dateEnd.$error) && (compareDate(basicInfo.dateStart, basicInfo.dateEnd)) : null"
+                            v-model = "$v.basicInfo.scholarshipDateEnd.$model"
+                            :state="$v.basicInfo.scholarshipDateEnd.$dirty ? (!$v.basicInfo.scholarshipDateEnd.$error) && (compareDate(basicInfo.scholarshipDateStart, basicInfo.scholarshipDateEnd)) : null"
                             aria-describedby="dateEndFeedback"
                         ></b-form-input>  
                         <b-form-invalid-feedback id="dateEndFeedback">
@@ -126,8 +126,8 @@
                             label-for = "selectAwardScholarship"
                             >
                         <b-form-input type = "date" 
-                            v-model = "$v.basicInfo.dateAward.$model"
-                            :state="$v.basicInfo.dateAward.$dirty ? (!$v.basicInfo.dateAward.$error) && (compareDate(basicInfo.dateEnd, basicInfo.dateAward)) : null"
+                            v-model = "$v.basicInfo.scholarshipDateAward.$model"
+                            :state="$v.basicInfo.scholarshipDateAward.$dirty ? (!$v.basicInfo.scholarshipDateAward.$error) && (compareDate(basicInfo.scholarshipDateEnd, basicInfo.scholarshipDateAward)) : null"
                             aria-describedby="dateAwardFeedback"
                             ></b-form-input>
                             <b-form-invalid-feedback id="dateAwardFeedback">
@@ -145,7 +145,7 @@
             label-for = "checkboxAdditionSubmissionScholarship"
             class = "mb-4"
         >
-            <b-form-checkbox-group id="checkboxAdditionSubmissionScholarship" v-model="basicInfo.addSubmission" name="additionalSubmission">
+            <b-form-checkbox-group id="checkboxAdditionSubmissionScholarship" v-model="basicInfo.scholarshipAddSubmission" name="additionalSubmission">
                 <b-row class = "text-center">
                     <b-col lg="3" md="6" sm="6">
                         <b-form-checkbox value="Transcript">Transcript</b-form-checkbox>
@@ -174,40 +174,40 @@ export default {
     data() {
       return {
           basicInfo: {
-            name: '',
-            amount:'',
-            recipient: '',
-            visibility: 'Public',
-            addSubmission: [],
-            dateStart: '',
-            dateEnd: '',
-            dateAward: ''
+            scholarshipName: '',
+            scholarshipAmount:'',
+            scholarshipRecipient: '',
+            scholarshipVisibility: 'Public',
+            scholarshipAddSubmission: [],
+            scholarshipDateStart: '',
+            scholarshipDateEnd: '',
+            scholarshipDateAward: ''
           }
               
       }
     },
     validations: {
         basicInfo: {
-             name: {
+            scholarshipName: {
                 required
             },
-            amount: {
+            scholarshipAmount: {
                 required,
                 decimal,
                 between: between(500.00, 999999999.99)
             },
-            recipient: {
+            scholarshipRecipient: {
                 required,
                 integer,
                 between: between(1, 100)
             },
-            dateStart: {
+            scholarshipDateStart: {
                 required
             },
-            dateEnd: {
+            scholarshipDateEnd: {
                 required
             },
-            dateAward: {
+            scholarshipDateAward: {
                 required
             }
         }
@@ -216,14 +216,14 @@ export default {
         validate() {
             this.$v.basicInfo.$touch();
             var isValid = !this.$v.basicInfo.$invalid;
-            if(this.basicInfo.addSubmission.length < 1) {
-                this.basicInfo.addSubmission = ['None'];
+            if(this.basicInfo.scholarshipAddSubmission.length < 1) {
+                this.basicInfo.scholarshipAddSubmission = ['None'];
             } else {
-                if (this.basicInfo.addSubmission[0] == "None" && this.basicInfo.addSubmission.length > 1) {
-                    this.basicInfo.addSubmission.splice(0, 1);
+                if (this.basicInfo.scholarshipAddSubmission[0] == "None" && this.basicInfo.scholarshipAddSubmission.length > 1) {
+                    this.basicInfo.scholarshipAddSubmission.splice(0, 1);
                 }
             }
-            this.$emit('returnData', this.$data, isValid);
+            this.$emit('returnData', this.basicInfo, isValid);
             return isValid;
         },
         compareDate(d1, d2) {

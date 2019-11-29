@@ -175,7 +175,7 @@
     },
     methods: {
         getReq() {
-            this.$emit('returnData', this.$data, true);
+            this.$emit('returnData', this.requirement, true);
         } 
     }
   }

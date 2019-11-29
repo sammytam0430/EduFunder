@@ -9,9 +9,9 @@
         >
             <b-form-input
                 id = "donarNameInputCorporate"
-                v-model = "$v.donorName.$model"
+                v-model = "$v.donorCorporate.donorName.$model"
                 placeholder = ""
-                :state="$v.donorName.$dirty ? !$v.donorName.$error : null"
+                :state="$v.donorCorporate.donorName.$dirty ? !$v.donorCorporate.donorName.$error : null"
                 aria-describedby="donorNameFeedback"
             ></b-form-input>
             <b-form-invalid-feedback id="donorNameFeedback">
@@ -27,9 +27,9 @@
         >
             <b-form-input
                 id = "companyNameInputCorporate"
-                v-model = "$v.companyName.$model"
+                v-model = "$v.donorCorporate.companyName.$model"
                 placeholder = ""
-                :state="$v.companyName.$dirty ? !$v.companyName.$error : null"
+                :state="$v.donorCorporate.companyName.$dirty ? !$v.donorCorporate.companyName.$error : null"
                 aria-describedby="companyNameFeedback"
             ></b-form-input>
             <b-form-invalid-feedback id="companyNameFeedback">
@@ -45,9 +45,9 @@
         >
             <b-form-input
                 id = "websiteInputCorporate"
-                v-model = "$v.website.$model"
+                v-model = "$v.donorCorporate.website.$model"
                 placeholder = ""
-                :state="$v.website.$dirty ? !$v.website.$anyError : null"
+                :state="$v.donorCorporate.website.$dirty ? !$v.donorCorporate.website.$anyError : null"
                 aria-describedby="websiteFeedback"
             ></b-form-input>
             <b-form-invalid-feedback id="companyNameFeedback">
@@ -76,9 +76,9 @@
         >
             <b-form-input
                 id = "contactInputCorporate"
-                v-model = "$v.contact.$model"
+                v-model = "$v.donorCorporate.contact.$model"
                 placeholder = "e.g. 6041234567"
-                :state="$v.contact.$dirty ? !$v.contact.$anyError : null"
+                :state="$v.donorCorporate.contact.$dirty ? !$v.donorCorporate.contact.$anyError : null"
                 aria-describedby="contactFeedback"
             ></b-form-input>
             <b-form-invalid-feedback id="contactFeedback">
@@ -94,9 +94,9 @@
         >
             <b-form-input
                 id = "addressInputCorporate"
-                v-model = "$v.address.$model"
+                v-model = "$v.donorCorporate.address.$model"
                 placeholder = ""
-                :state="$v.address.$dirty ? !$v.address.$error : null"
+                :state="$v.donorCorporate.address.$dirty ? !$v.donorCorporate.address.$error : null"
                 aria-describedby="addressFeedback"
             ></b-form-input>
             <b-form-invalid-feedback id="addressFeedback">
@@ -112,9 +112,9 @@
         >
             <b-form-input
                 id = "coutryInputCorporate"
-                v-model = "$v.country.$model"
+                v-model = "$v.donorCorporate.country.$model"
                 placeholder = ""
-                :state="$v.country.$dirty ? !$v.country.$error : null"
+                :state="$v.donorCorporate.country.$dirty ? !$v.donorCorporate.country.$error : null"
                 aria-describedby="countryFeedback"
             ></b-form-input>
             <b-form-invalid-feedback id="countryFeedback">
@@ -143,43 +143,48 @@ export default {
     mixins: [validationMixin],
     data() {
         return {
-            donorName: '',
-            companyName: '',
-            country: '',
-            website: '',
-            contact: '',
-            address: ''
+            donorCorporate : {
+                donorName: '',
+                companyName: '',
+                country: '',
+                website: '',
+                contact: '',
+                address: ''
+            }
         }
     },
     validations: {
-        donorName: {
-            required
-        },
-        companyName: {
-            required
-        },
-        contact: {
-            required,
-            numeric,	
-            minLength: minLength(10),
-            maxLength: maxLength(10)
-        },
-        website: {
-            required,
-            url
-        },
-        address: {
-            required
-        },
-        country: {
-            required,
-            alpha
+        donorCorporate : {
+            donorName: {
+                required
+            },
+            companyName: {
+                required
+            },
+            contact: {
+                required,
+                numeric,	
+                minLength: minLength(10),
+                maxLength: maxLength(10)
+            },
+            website: {
+                required,
+                url
+            },
+            address: {
+                required
+            },
+            country: {
+                required,
+                alpha
+            }
         }
+        
     },
     methods: {
         onSave() {
-            this.$v.$touch();
-            if (this.$v.$anyError) {
+            this.$v.donorCorporate.$touch();
+            if (this.$v.donorCorporate.$anyError) {
             return
             }
         },
