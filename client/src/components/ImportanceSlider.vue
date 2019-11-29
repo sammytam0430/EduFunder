@@ -27,12 +27,12 @@
       };
     },
     watch: {
-      importance() {
-        // this.$parent.importance = this.importance;
-        this.$emit('getImportance', this.importance);
-      }
     },
-    methods: {}
+    methods: {
+      getImportance() {
+        return this.importance;
+      }
+    }
   };
 </script>
 

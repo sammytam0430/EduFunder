@@ -19,7 +19,7 @@
             </ul>
         </div>
         
-        <importanceSlider />
+        <importanceSlider ref="importSlider"/>
     </b-modal>
   </b-container>
 </template>
@@ -106,17 +106,25 @@
           this.$bvModal.show('studReqStudyFieldModal');
           this.checked="primary";
         } else {
-          this.$parent.studyFields.selectedStudyFields = [];
-          this.$parent.selectedCriteria.studyField = false;
+          this.$parent.requirement.studyFields.selectedStudyFields = ['Did not specify'];
+          this.$parent.requirement.studyFields.importance = 0;
+          this.$parent.requirement.selectedCriteria.studyField.selected = false;
           this.checked="secondary";
         }
       },
       returnData(bvModalEvt) {
-        bvModalEvt.preventDefault()
-          
-        this.$parent.studyFields.selectedStudyFields = this.studyFields;
-        this.$parent.studyFields.importance = this.importance;
-        this.$parent.selectedCriteria.studyField = true;
+        bvModalEvt.preventDefault();
+        if(this.studyFields.length < 1) {
+                this.studyFields = ['Did not specify'];
+            } else {
+                if (this.studyFields[0] == "Did not specify" && this.studyFields.length > 1) {
+                    this.studyFields.splice(0, 1);
+                }
+            }  
+        this.$parent.requirement.studyFields.selectedStudyFields = this.studyFields;
+        this.$parent.requirement.studyFields.importance = this.$refs['importSlider'].getImportance();
+        this.$parent.requirement.selectedCriteria.studyField.selected = true;
+        this.studyFields = [];
 
         this.$nextTick(()=>{
           this.$bvModal.hide('studReqStudyFieldModal');

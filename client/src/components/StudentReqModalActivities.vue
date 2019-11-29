@@ -19,7 +19,7 @@
             </ul>
         </div>
         
-        <importanceSlider />
+        <importanceSlider ref="importSlider"/>
     </b-modal>
   </b-container>
 </template>
@@ -95,17 +95,24 @@
           this.$bvModal.show('studReqActivitiesModal');
           this.checked="primary";
         } else {
-          this.$parent.activities.selectedActivities = ['Any'];
-          this.$parent.selectedCriteria.activities = false;
+          this.$parent.requirement.activities.selectedActivities = ['Did not specify'];
+          this.$parent.requirement.activities.importance = 0;
+          this.$parent.requirement.selectedCriteria.activities.selected = false;
           this.checked="secondary";
         }
       },
       returnData(bvModalEvt) {
         bvModalEvt.preventDefault()
-          
-        this.$parent.activities.selectedActivities = this.activities;
-        this.$parent.activities.importance = this.importance;
-        this.$parent.selectedCriteria.activities = true;
+        if(this.activities.length < 1) {
+                this.activities = ['Did not specify'];
+            } else {
+                if (this.activities[0] == "Did not specify" && this.activities.length > 1) {
+                    this.activities.splice(0, 1);
+                }
+            }  
+        this.$parent.requirement.activities.selectedActivities = this.activities;
+        this.$parent.requirement.activities.importance = this.$refs['importSlider'].getImportance();
+        this.$parent.requirement.selectedCriteria.activities.selected = true;
         this.activities = [];
 
         this.$nextTick(()=>{

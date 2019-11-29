@@ -14,7 +14,7 @@
                 aria-describedby="donorNameFeedback"
             ></b-form-input>
             <b-form-invalid-feedback id="donorNameFeedback">
-                Donor name cannot be empty
+                Warning: Donor name cannot be empty
             </b-form-invalid-feedback>
         </b-form-group>
 
@@ -32,7 +32,7 @@
                 aria-describedby="linkedinProfileFeedback"
             ></b-form-input>
             <b-form-invalid-feedback id="linkedinProfileFeedback">
-                Linkedin Profile needs to be in url
+                Warning: Linkedin Profile needs to be in url
             </b-form-invalid-feedback>
         </b-form-group>
 <!-- 
@@ -76,7 +76,7 @@
                 aria-describedby="contactFeedback"
             ></b-form-input>
             <b-form-invalid-feedback id="contactFeedback">
-                Invalid contact
+                Warning: Invalid contact
             </b-form-invalid-feedback>
         </b-form-group>
 
@@ -94,7 +94,7 @@
                 aria-describedby="addressFeedback"
             ></b-form-input>
             <b-form-invalid-feedback id="addressFeedback">
-                address cannot be empty
+                Warning: Address cannot be empty
             </b-form-invalid-feedback>
         </b-form-group>
 
@@ -112,7 +112,7 @@
                 aria-describedby="countryFeedback"
             ></b-form-input>
             <b-form-invalid-feedback id="countryFeedback">
-                Country cannot be empty or with numbers
+                Warning: Country cannot be empty or with numbers
             </b-form-invalid-feedback>
         </b-form-group>
 
@@ -130,7 +130,7 @@
                 aria-describedby="emailFeedback"
             ></b-form-input>
             <b-form-invalid-feedback id="emailFeedback">
-                Invalid email
+                Warning: Invalid email
             </b-form-invalid-feedback>
         </b-form-group>
         <b-row>

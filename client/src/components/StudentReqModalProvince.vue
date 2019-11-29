@@ -12,46 +12,46 @@
         >
           <b-row >
             <b-col>
-                <b-form-checkbox value="AB">Alberta</b-form-checkbox>
+                <b-form-checkbox value="Alberta">Alberta</b-form-checkbox>
             </b-col>
             <b-col>
-                <b-form-checkbox value="ON">Ontario</b-form-checkbox>
+                <b-form-checkbox value="Ontario">Ontario</b-form-checkbox>
             </b-col>
             <b-col>
-                <b-form-checkbox value="MB">Manitoba</b-form-checkbox>
+                <b-form-checkbox value="Manitoba">Manitoba</b-form-checkbox>
             </b-col>
           </b-row>
           <b-row>
             <b-col>
-                <b-form-checkbox value="QC">Quebec</b-form-checkbox>
+                <b-form-checkbox value="Quebec">Quebec</b-form-checkbox>
             </b-col>
             <b-col>
-                <b-form-checkbox value="NS">Nova Scotia</b-form-checkbox>
+                <b-form-checkbox value="Nova Scotia">Nova Scotia</b-form-checkbox>
             </b-col>
             <b-col>
-                <b-form-checkbox value="SK">Saskatchewan</b-form-checkbox>
+                <b-form-checkbox value="Saskatchewan">Saskatchewan</b-form-checkbox>
             </b-col>
           </b-row>
           <b-row >
             <b-col>
-                <b-form-checkbox value="NB">New Brunswick</b-form-checkbox>
+                <b-form-checkbox value="New Brunswick">New Brunswick</b-form-checkbox>
             </b-col>
             <b-col>
-              <b-form-checkbox value="BC">British Columbia</b-form-checkbox>
+              <b-form-checkbox value="British Columbia">British Columbia</b-form-checkbox>
                 
             </b-col>
           </b-row>
           <b-row>
             <b-col>
-                <b-form-checkbox value="NL">Newfoundland and Labrador</b-form-checkbox>
+                <b-form-checkbox value="Newfoundland and Labrador">Newfoundland and Labrador</b-form-checkbox>
             </b-col>
             <b-col>
-                <b-form-checkbox value="PE">Prince Edward Island</b-form-checkbox>
+                <b-form-checkbox value="Prince Edward Island">Prince Edward Island</b-form-checkbox>
             </b-col>
           </b-row>
           
         </b-form-checkbox-group>
-        <importanceSlider />
+        <importanceSlider ref="importSlider"/>
     </b-modal>
   </b-container>
 </template>
@@ -81,15 +81,24 @@ import importanceSlider from "@/components/ImportanceSlider.vue"
           this.$bvModal.show('studReqProvinceModal');
           this.checked="primary"
         } else {
-          this.$parent.province.selectedProvince = ['Any'];
-          this.$parent.selectedCriteria.province = false;
+          this.$parent.requirement.province.selectedProvince = ['Did not specify'];
+          this.$parent.requirement.province.importance = 0;
+          this.$parent.requirement.selectedCriteria.province.selected = false;
           this.checked="secondary"
         }
       },
       returnData(bvModalEvt) {
-        bvModalEvt.preventDefault()
-        this.$parent.province.selectedProvince = this.province;
-        this.$parent.selectedCriteria.province = true;
+        bvModalEvt.preventDefault();
+        if(this.province.length < 1) {
+                this.province = ['Did not specify'];
+            } else {
+                if (this.province[0] == "Did not specify" && this.province.length > 1) {
+                    this.province.splice(0, 1);
+                }
+            }
+        this.$parent.requirement.province.selectedProvince = this.province;
+        this.$parent.requirement.province.importance = this.$refs['importSlider'].getImportance();
+        this.$parent.requirement.selectedCriteria.province.selected = true;
 
         this.$nextTick(()=>{
           this.$bvModal.hide('studReqProvinceModal');

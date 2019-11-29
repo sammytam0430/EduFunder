@@ -5,7 +5,7 @@
   
   <div class="content-1">
    <!-- :before-change="()=>validate()"  -->
-  <tab-content title="Basic information" >
+  <tab-content title="Basic information" :before-change="()=>validate()">
     <b-container fluid >
     <div class="legend">Basic info</div>
     <div>
@@ -30,7 +30,7 @@
       </b-col >
       <b-col sm="3">
         <b-form-input v-model="$v.form.name.$model" 
-        :state="$v.form.name.$dirty ? !$v.form.name.$error : null"
+        :state="$v.form.name.$dirty ? !$v.form.name.$anyError : null"
         aria-describedby="input-1-live-feedback"
         ></b-form-input>
         <b-form-invalid-feedback id="input-1-live-feedback">
@@ -46,7 +46,7 @@
       </b-col >
       <b-col sm="3">
         <b-form-input v-model="$v.form.lname.$model" 
-        :state="$v.form.lname.$dirty ? !$v.form.lname.$error : null"
+        :state="$v.form.lname.$dirty ? !$v.form.lname.$anyError : null"
         aria-describedby="input-1-live-feedback"
         ></b-form-input>
         <b-form-invalid-feedback id="input-1-live-feedback">
@@ -60,7 +60,7 @@
       </b-col >
       <b-col sm="3">
         <b-form-input v-model="$v.form.email.$model" 
-        :state="$v.form.email.$dirty ? !$v.form.email.$error : null"
+        :state="$v.form.email.$dirty ? !$v.form.email.$anyError : null"
         aria-describedby="input-1-live-feedback"
         ></b-form-input>
         <b-form-invalid-feedback id="input-1-live-feedback">
@@ -77,10 +77,10 @@
         <b-form-input id=type-date type="date"
         v-model="$v.form.birthday.$model" 
         :state="$v.form.birthday.$dirty ? !$v.form.birthday.$error : null"
-        aria-describedby="input-1-live-feedback"
+        aria-describedby="input-2-live-feedback"
          >
         </b-form-input>
-        <b-form-invalid-feedback id="input-1-live-feedback">
+        <b-form-invalid-feedback id="input-2-live-feedback">
           Please enter your birthday
         </b-form-invalid-feedback>
       </b-col>
@@ -163,7 +163,7 @@
         <b-form-input id=Language placeholder="Language"
         name="example-input-1"
           v-model="$v.form.language.$model"
-          :state="$v.form.language.$dirty ? !$v.form.language.$error : null"></b-form-input>
+          :state="$v.form.language.$dirty ? !$v.form.language.$anyError : null"></b-form-input>
           <b-form-invalid-feedback id="input-1-live-feedback">
           This is a required field.
         </b-form-invalid-feedback>
@@ -399,6 +399,7 @@ export default{
           postalCode: null,
           birthday: null,
           gender: null,
+          citizenship: null
         },
         form2: {
           highschool: null,
@@ -456,9 +457,6 @@ export default{
         email:{
           required,
           email
-        },
-        food: {
-          required
         },
         name: {
           required,

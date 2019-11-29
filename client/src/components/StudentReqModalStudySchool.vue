@@ -17,7 +17,7 @@
             </ul>
         </div>
         
-        <importanceSlider />
+        <importanceSlider ref="importSlider"/>
     </b-modal>
   </b-container>
 </template>
@@ -48,17 +48,25 @@
           this.$bvModal.show('studReqStudySchoolModal');
           this.checked="primary";
         } else {
-          this.$parent.studySchools.selectedStudySchools = [];
-          this.$parent.selectedCriteria.studySchool = false;
+          this.$parent.requirement.studySchools.selectedStudySchools = ['Any school'];
+          this.$parent.requirement.studySchools.importance = 0;
+          this.$parent.requirement.selectedCriteria.studySchool.selected = false;
           this.checked="secondary";
         }
       },
       returnData(bvModalEvt) {
-        bvModalEvt.preventDefault()
-          
-        this.$parent.studySchools.selectedStudySchools = this.studySchools;
-        this.$parent.studySchools.importance = this.importance;
-        this.$parent.selectedCriteria.studySchool = true;
+        bvModalEvt.preventDefault();
+        if(this.studySchools.length < 1) {
+                this.studySchools = ['Any school'];
+            } else {
+                if (this.studySchools[0] == "Any school" && this.studySchools.length > 1) {
+                    this.studySchools.splice(0, 1);
+                }
+            }  
+        this.$parent.requirement.studySchools.selectedStudySchools = this.studySchools;
+        this.$parent.requirement.studySchools.importance = this.$refs['importSlider'].getImportance();
+        this.$parent.requirement.selectedCriteria.studySchool.selected = true;
+        this.studySchools = [];
 
         this.$nextTick(()=>{
           this.$bvModal.hide('studReqStudySchoolModal');

@@ -13,7 +13,7 @@
           <b-col cols="1" class="px-0 text-center fontAge">65</b-col>
         </b-row>  
         </b-container>
-        <importanceSlider :getImportance="getAgeImportance"></importanceSlider>
+        <importanceSlider ref="importSlider"></importanceSlider>
     </b-modal>
   </b-container>
 </template>
@@ -43,17 +43,18 @@
           this.$bvModal.show('studReqAgeModal');
           this.checked="primary";
         } else {
-          this.$parent.age.selectedAge = [16, 65];
-          this.$parent.selectedCriteria.age = false;
+          this.$parent.requirement.age.selectedAge = [16, 65];
+          this.$parent.requirement.age.importance = 0;
+          this.$parent.requirement.selectedCriteria.age.selected = false;
           this.checked="secondary";
         }
       },
       returnData(bvModalEvt) {
         bvModalEvt.preventDefault()
           
-        this.$parent.age.selectedAge = this.age;
-        this.$parent.age.importance = this.importance;
-        this.$parent.selectedCriteria.age = true;
+        this.$parent.requirement.age.selectedAge = this.age;
+        this.$parent.requirement.age.importance = this.$refs['importSlider'].getImportance();
+        this.$parent.requirement.selectedCriteria.age.selected = true;
 
         this.$nextTick(()=>{
           this.$bvModal.hide('studReqAgeModal');
@@ -67,9 +68,6 @@
           this.$nextTick(()=>{
           this.$bvModal.hide('studReqAgeModal');
         })
-      },
-      getAgeImportance(value) {
-        this.importance = value;
       }
     }
   };

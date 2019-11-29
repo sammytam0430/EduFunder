@@ -1,6 +1,24 @@
 <template>
     <b-form @submit.stop.prevent="onSave">
 
+         <b-form-group
+            id = "donarNameCorporate"
+            label = "Donor Name: "
+            label-for = "donarNameInputCorporate"
+            label-cols-lg = "3"
+        >
+            <b-form-input
+                id = "donarNameInputCorporate"
+                v-model = "$v.donorName.$model"
+                placeholder = ""
+                :state="$v.donorName.$dirty ? !$v.donorName.$error : null"
+                aria-describedby="donorNameFeedback"
+            ></b-form-input>
+            <b-form-invalid-feedback id="donorNameFeedback">
+                Warning: Donor name cannot be empty
+            </b-form-invalid-feedback>
+        </b-form-group>
+
         <b-form-group
             id = "companyNameCorporate"
             label = "Company Name: "
@@ -15,7 +33,7 @@
                 aria-describedby="companyNameFeedback"
             ></b-form-input>
             <b-form-invalid-feedback id="companyNameFeedback">
-                Company name cannot be empty
+                Warning: Company name cannot be empty
             </b-form-invalid-feedback>
         </b-form-group>
 
@@ -33,7 +51,7 @@
                 aria-describedby="websiteFeedback"
             ></b-form-input>
             <b-form-invalid-feedback id="companyNameFeedback">
-                Website need to be an url
+                Warning: Website need to be an url
             </b-form-invalid-feedback>
         </b-form-group>
 
@@ -64,7 +82,7 @@
                 aria-describedby="contactFeedback"
             ></b-form-input>
             <b-form-invalid-feedback id="contactFeedback">
-                Invalid contact
+                Warning: Invalid contact
             </b-form-invalid-feedback>
         </b-form-group>
 
@@ -82,7 +100,7 @@
                 aria-describedby="addressFeedback"
             ></b-form-input>
             <b-form-invalid-feedback id="addressFeedback">
-                Address cannot be empty
+                Warning: Address cannot be empty
             </b-form-invalid-feedback>
         </b-form-group>
 
@@ -100,27 +118,10 @@
                 aria-describedby="countryFeedback"
             ></b-form-input>
             <b-form-invalid-feedback id="countryFeedback">
-                Country cannot be empty
+                Warning: Country cannot be empty or with numbers
             </b-form-invalid-feedback>
         </b-form-group>
 
-        <b-form-group
-            id = "sizeCorporate"
-            label = "Size of Company: "
-            label-for = "sizeInputCorporate"
-            label-cols-lg = "3"
-        >
-            <b-form-input
-                id = "sizeInputCorporate"
-                v-model = "$v.size.$model"
-                placeholder = ""
-                :state="$v.country.$dirty ? !$v.country.$error : null"
-                aria-describedby="sizeFeedback"
-            ></b-form-input>
-            <b-form-invalid-feedback id="sizeFeedback">
-                Size of the company cannot be empty
-            </b-form-invalid-feedback>
-        </b-form-group>
         <b-row>
           <b-col ></b-col>
           <b-col ></b-col>
@@ -135,22 +136,25 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, minLength, maxLength, url, numeric } from 'vuelidate/lib/validators'
+import { required, minLength, maxLength, url, numeric, alpha } from 'vuelidate/lib/validators'
 
 
 export default {
     mixins: [validationMixin],
     data() {
         return {
+            donorName: '',
             companyName: '',
             country: '',
             website: '',
             contact: '',
-            address: '',
-            size: ''     
+            address: ''
         }
     },
     validations: {
+        donorName: {
+            required
+        },
         companyName: {
             required
         },
@@ -168,10 +172,8 @@ export default {
             required
         },
         country: {
-            required
-        },
-        size: {
-            required
+            required,
+            alpha
         }
     },
     methods: {

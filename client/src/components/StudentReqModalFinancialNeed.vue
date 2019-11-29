@@ -3,7 +3,7 @@
     <b-button @click="financialNeedSelected()" value="FinancialNeed" :variant="checked"> Financial Need </b-button>
     <b-modal id="studReqFinancialNeedModal" ref="modelProvince" title="Financial Need"  
       @ok="returnData" @close="closeModal" @cancel="closeModal">
-        <p>Is financial need important:</p>
+        <p>Is it only the students who have Financial need can apply</p>
         <b-form-radio-group id="financialNeed" v-model="financialNeed" class="mb-4">
                 <b-row class = "text-center">
                     <b-col>
@@ -14,7 +14,7 @@
                     </b-col>
                 </b-row>
             </b-form-radio-group>
-        <importanceSlider />
+        <importanceSlider ref="importSlider"/>
     </b-modal>
   </b-container>
 </template>
@@ -44,17 +44,18 @@
           this.$bvModal.show('studReqFinancialNeedModal');
           this.checked="primary"
         } else {
-          this.$parent.financialNeed.selectedFinancialNeed = 'No';
-          this.$parent.selectedCriteria.financialNeed = false;
+          this.$parent.requirement.financialNeed.selectedFinancialNeed = 'No';
+          this.$parent.requirement.financialNeed.importance = 0;
+          this.$parent.requirement.selectedCriteria.financialNeed.selected = false;
           this.checked="secondary"
         }
       },
       returnData(bvModalEvt) {
         bvModalEvt.preventDefault()
           
-        this.$parent.financialNeed.selectedFinancialNeed = this.financialNeed;
-        this.$parent.financialNeed.importance = this.importance;
-        this.$parent.selectedCriteria.financialNeed = true;
+        this.$parent.requirement.financialNeed.selectedFinancialNeed = this.financialNeed;
+        this.$parent.requirement.financialNeed.importance = this.$refs['importSlider'].getImportance();
+        this.$parent.requirement.selectedCriteria.financialNeed.selected = true;
 
         this.$nextTick(()=>{
           this.$bvModal.hide('studReqFinancialNeedModal');

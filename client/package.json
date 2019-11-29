@@ -27,10 +27,7 @@
     "vue-session": "^1.0.0",
     "vue-slider-component": "^3.0.43",
     "vue2-google-maps": "^0.10.7",
-<<<<<<< HEAD
     "vuejs-datepicker": "^1.6.2",
-=======
->>>>>>> eeca7b66f64a58415940ddfd5857d0eff40d02d9
     "vuelidate": "^0.7.4"
   },
   "devDependencies": {
