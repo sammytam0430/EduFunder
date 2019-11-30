@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <b-button @click="studyFieldSelected()" value="studyField" :variant="checked"> Field of study </b-button>
+    <b-button @click="studyFieldSelected()" value="studyField" :variant="checked"> Field of Study </b-button>
     <b-modal id="studReqStudyFieldModal" ref="modelStudyField" title="Field of Study"  
       @ok="returnData" @close="closeModal" @cancel="closeModal">
         <p>Select perferred field of study:</p>

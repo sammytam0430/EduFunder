@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <b-button @click="studyYearSelected()" value="StudyYear" :variant="checked"> Year of study </b-button>
+    <b-button @click="studyYearSelected()" value="StudyYear" :variant="checked"> Year of Study </b-button>
     <b-modal id="studReqStudyYearModal" ref="modelProvince" title="Year of Study"  
       @ok="returnData" @close="closeModal" @cancel="closeModal">
         <p>Select perferred minimum year of study:</p>

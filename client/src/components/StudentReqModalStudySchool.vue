@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <b-button @click="studySchoolSelected()" value="studySchool" :variant="checked"   > School of study </b-button>
+    <b-button @click="studySchoolSelected()" value="studySchool" :variant="checked"   > School of Study </b-button>
     <b-modal id="studReqStudySchoolModal" ref="modelStudySchool" title="School of Study"  
       @ok="returnData" @close="closeModal" @cancel="closeModal">
         <p>Enter perferred school of study:</p>
