@@ -5,28 +5,35 @@
             </b-col>
             <b-col sm="3">
                 <div>
-                    <b-form-select v-model="selected" :options="EC"></b-form-select>
+                    <b-form-select :options="EC"
+                    v-model="$v.ecValue.$model"
+                    :state="$v.ecValue.$dirty ? !$v.ecValue.$error : null" ></b-form-select>
                 </div>
             </b-col>
     </b-row>
 </template>
 <script>
+
+import { validationMixin } from 'vuelidate'
+import { required} from 'vuelidate/lib/validators'
+
 export default{
-    name: "studyFieldDD",
+    mixins: [validationMixin],
     data(){
         return{
+        ecValue: null,
         EC:[
-          {value: 'a', text: 'Agricultural Development'},
-          {value: 'c', text: 'Archery'},    
-          {value: 'e', text: 'Badminton'},
-          {value: 'g', text: 'Christian Ministry'},
-          {value: 'j', text: 'Cycling'},
-          {value: 'b', text: 'Alpine Sking'},
-          {value: 'd', text: 'Basketball'},
-          {value: 'f', text: 'Boxing'},
-          {value: 'h', text: 'Canoeing'},
-          {value: 'k', text: 'Debate'},
-          {value: 'n', text: 'Diving'},
+          {value: 'Agricultural Development', text: 'Agricultural Development'},
+          {value: 'Archery', text: 'Archery'},    
+          {value: 'Badminton', text: 'Badminton'},
+          {value: 'Christian Ministry', text: 'Christian Ministry'},
+          {value: 'Cycling', text: 'Cycling'},
+          {value: 'Alpine Sking', text: 'Alpine Sking'},
+          {value: 'Basketball', text: 'Basketball'},
+          {value: 'Boxing', text: 'Boxing'},
+          {value: 'Canoeing', text: 'Canoeing'},
+          {value: 'Debate', text: 'Debate'},
+          {value: 'Diving', text: 'Diving'},
           {value: 'Dancing', text: 'Dancing'},
           {value: 'Drama', text: 'Drama'},
           {value: 'Environmental Activism', text: 'Environmental Activism'},
@@ -60,6 +67,20 @@ export default{
           {value: 'WeightLifting', text: 'WeightLifting'},
           {value: 'Wrestling', text: 'Wrestling'}
         ]
+        }
+    },
+    validations:{
+        ecValue:{
+            required
+        }
+    },
+    methods:{
+        check(){
+            this.$v.ecValue.$touch();
+            return !this.$v.ecValue.$invalid;
+        },
+        getEC(){
+            return this.ecValue;
         }
     }
 }

@@ -5,7 +5,7 @@
             </b-col>
             <b-col sm="4">
                 <div>
-                    <b-form-select v-model="selected" :options="studyField"></b-form-select>
+                    <b-form-select :options="studyField"></b-form-select>
                 </div>
             </b-col>
     </b-row>
