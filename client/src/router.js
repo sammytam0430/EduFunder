@@ -3,6 +3,13 @@ import Router from "vue-router";
 import Landing from "@/views/Landing.vue";
 import SignUpModal from "@/components/SignUpModal.vue";
 import LogInModal from "@/components/LogInModal.vue";
+import studentProfile from "@/views/studentProfile.vue";
+import ProfileDonor from "@/views/ProfileDonor.vue";
+import ScholarshipForm from "@/views/ScholarshipForm.vue";
+import studentCampaign from "@/views/studentCampaign.vue";
+import campaignGallery from "@/views/campaignGallery.vue";
+import campaignDetail from "@/views/campaignDetail.vue"
+
 Vue.use(Router);
 
 export default new Router({
@@ -38,8 +45,38 @@ export default new Router({
             showSignUp: false,
             showLogIn: true
           }
-        }
-      ]
+        },
+        ]
+    },
+    {
+      path: "/studentP",
+      name: "studentProfile",
+      component: studentProfile
+    }, 
+    {
+      path: "/ProfileD",
+      name: "ProfileDonor",
+      component: ProfileDonor
+    },
+    {
+      path: "/ScholarshipForm",
+      name: "ScholarshipForm",
+      component: ScholarshipForm
+    },
+    {
+      path: "/CampaignForm",
+      name: "StudentCampaign",
+      component: studentCampaign
+    },
+    {
+      path: "/CampaignGallery",
+      name: "campaignGallery",
+      component: campaignGallery
+    },
+    {
+      path:"/campaignDetails",
+      name: "campaignDetail",
+      component: campaignDetail
     }
   ]
 });

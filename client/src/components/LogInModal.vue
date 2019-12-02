@@ -68,15 +68,10 @@ export default {
       if (this.response.success) {
         this.$session.start();
         this.$session.set("currentUser", this.response.userID);
-        this.setActive();
-        this.$router.push("dashboard");
+        this.$router.push("campaignGallery");
       } else {
         this.showAlert = true;
       }
-    },
-    // set user isActive to true in db
-    async setActive() {
-      await UsersService.updateUser(this.$session.get("currentUser"), {isActive: true});
     },
     // event handler on modal close
     close() {
