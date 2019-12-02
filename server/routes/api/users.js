@@ -13,7 +13,7 @@ router.post("/", (req, res) => {
     .returning("*")
     .into("users")
     .then(data => {
-      res.json({ status: 201, success: true, message: "User created, now you may login" });
+      res.json({ status: 201, success: true, message: "User created, now you may login", userID: data[0].userID });
     })
     .catch(err => {
       if (err.code === "23505") {

@@ -96,6 +96,14 @@
           const response = await UsersService.createUser(this.signup);
           this.response = response.data;
           this.showAlert = true;
+          if (this.response.success) {
+            this.$session.set("currentUser", this.response.userID);
+            if (this.signup.userType === "student") {
+              this.$router.push("studentP");
+            } else if (this.signup.userType === "donor") {
+              this.$router.push("ProfileD");
+            }
+          }
         } else {
           this.response.message = "Please select a user type";
           this.showAlert = true;
