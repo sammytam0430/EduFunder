@@ -25,7 +25,6 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required} from 'vuelidate/lib/validators'
 import ethnicityDD from "@/components/ethnicityDD.vue"
 import heritageDD from "@/components/heritageDD.vue"
 import ecDD from "@/components/ecDD.vue"

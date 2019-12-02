@@ -213,7 +213,6 @@ export default{
             this.$v.form.$touch();
             var isValid = !this.$v.form.$invalid;
             this.$emit('getTab1',this.form, isValid);
-            console.log(isValid + "child");
             return isValid;
         }
     },

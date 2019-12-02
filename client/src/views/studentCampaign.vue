@@ -27,7 +27,6 @@ import {FormWizard, TabContent} from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 import 'animate.css/animate.min.css'
 import { validationMixin } from 'vuelidate'
-import { required, alpha, maxLength, numeric} from 'vuelidate/lib/validators'
 import studentCampaignTab1 from "@/components/studentCampaignTab1.vue"
 import studentCampaignTab2 from "@/components/studentCampaignTab2.vue"
 import studentCampaignTab3 from "@/components/studentCampaignTab3.vue"
@@ -50,7 +49,6 @@ export default{
     methods:{
       getData(tabContent, isValid){
          if(isValid){
-           console.log("hello world");
            this.formData = Object.assign({}, this.formData, tabContent);
          } 
       },
@@ -61,7 +59,6 @@ export default{
           return this.$refs['tab-content-2'].check();
       },
       validate3(){
-        console.log("hello World");
         if (this.$refs['tab-content-3'].check()){
             this.$refs['tab-content-3'].check();
             alert("hello World");

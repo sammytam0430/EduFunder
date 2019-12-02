@@ -191,7 +191,7 @@
 </template>
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, alpha, maxLength, numeric} from 'vuelidate/lib/validators'
+import { required} from 'vuelidate/lib/validators'
 
 export default{
     mixins: [validationMixin],
@@ -278,7 +278,6 @@ export default{
             this.$v.tab2.$touch();
             var isValid = !this.$v.tab2.$invalid;
             this.$emit('getTab2',this.tab2, isValid);
-            console.log(isValid);
             return isValid;
         }
     }

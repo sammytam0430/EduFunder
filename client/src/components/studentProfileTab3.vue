@@ -156,7 +156,6 @@ export default{
            this.form3.startYear = this.$refs['startMonthYear'].getYear();
 
           this.$refs['startMonthYear'].check();
-           console.log(this.form3);
            this.$v.form3.$touch();
            var isValid = !this.$v.form3.$invalid && this.$refs['startMonthYear'].check();
            this.$emit('getTab3', this.form3, isValid); 
