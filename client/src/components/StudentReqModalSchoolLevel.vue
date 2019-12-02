@@ -39,7 +39,7 @@
           </b-row>
           
         </b-form-checkbox-group>
-        <importanceSlider />
+        <importanceSlider ref="importSlider"/>
     </b-modal>
   </b-container>
 </template>
@@ -69,15 +69,24 @@ import importanceSlider from "@/components/ImportanceSlider.vue"
           this.$bvModal.show('studReqSchoolLevelModal');
           this.checked="primary";
         } else {
-          this.$parent.schoolLevel.selectedSchoolLevel = ['Any'];
-          this.$parent.selectedCriteria.schoolLevel = false;
+          this.$parent.requirement.schoolLevel.selectedSchoolLevel = ['Did not specify'];
+          this.$parent.requirement.schoolLevel.importance = 0;
+          this.$parent.requirement.selectedCriteria.schoolLevel.selected = false;
           this.checked="secondary";
         }
       },
       returnData(bvModalEvt) {
-        bvModalEvt.preventDefault()
-        this.$parent.schoolLevel.selectedSchoolLevel = this.schoolLevel;
-        this.$parent.selectedCriteria.schoolLevel = true;
+        bvModalEvt.preventDefault();
+        if(this.schoolLevel.length < 1) {
+                this.schoolLevel = ['Did not specify'];
+            } else {
+                if (this.schoolLevel[0] == "Did not specify" && this.schoolLevel.length > 1) {
+                    this.schoolLevel.splice(0, 1);
+                }
+            }
+        this.$parent.requirement.schoolLevel.selectedSchoolLevel = this.schoolLevel;
+        this.$parent.requirement.schoolLevel.importance = this.$refs['importSlider'].getImportance();
+        this.$parent.requirement.selectedCriteria.schoolLevel.selected = true;
 
         this.$nextTick(()=>{
           this.$bvModal.hide('studReqSchoolLevelModal');

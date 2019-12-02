@@ -51,9 +51,7 @@ library.add(
   faGithubAlt
 );
 Vue.component("font-awesome-icon", FontAwesomeIcon);
-Vue.use(VueFormWizard);
 Vue.use(DateDropdown);
-Vue.use(Vuelidate);
 Vue.component('vue-slider', VueSlider)
 
 

@@ -23,7 +23,7 @@
           </b-row>
                      
         </b-form-checkbox-group>
-        <importanceSlider />
+        <importanceSlider ref="importSlider"/>
     </b-modal>
   </b-container>
 </template>
@@ -53,15 +53,24 @@ import importanceSlider from "@/components/ImportanceSlider.vue"
           this.$bvModal.show('studReqCitizenshipModal');
           this.checked="primary";
         } else {
-          this.$parent.citizenship.selectedCitizenship = ['Any'];
-          this.$parent.selectedCriteria.citizenship = false;
+          this.$parent.requirement.citizenship.selectedCitizenship = ['Did not specify'];
+          this.$parent.requirement.citizenship.importance = 0;
+          this.$parent.requirement.selectedCriteria.citizenship.selected = false;
           this.checked="secondary";
         }
       },
       returnData(bvModalEvt) {
         bvModalEvt.preventDefault();
-        this.$parent.citizenship.selectedCitizenship = this.schoolLevel;
-        this.$parent.selectedCriteria.citizenship = true;
+        if(this.citizenship.length < 1) {
+                this.citizenship = ['Did not specify'];
+            } else {
+                if (this.citizenship[0] == "Did not specify" && this.citizenship.length > 1) {
+                    this.citizenship.splice(0, 1);
+                }
+            }
+        this.$parent.requirement.citizenship.selectedCitizenship = this.citizenship;
+        this.$parent.requirement.citizenship.importance = this.$refs['importSlider'].getImportance();
+        this.$parent.requirement.selectedCriteria.citizenship.selected = true;
 
         this.$nextTick(()=>{
           this.$bvModal.hide('studReqCitizenshipModal');

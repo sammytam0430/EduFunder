@@ -14,7 +14,7 @@
                     </b-col>
                 </b-row>
             </b-form-radio-group>
-        <importanceSlider />
+        <importanceSlider ref="importSlider"/>
     </b-modal>
   </b-container>
 </template>
@@ -32,7 +32,7 @@
       return {
         checked: "secondary",
         selected: false,
-        courseLoad: '',
+        courseLoad: 'Full-time or Part-time',
         importance: 0
       }
     },
@@ -44,17 +44,18 @@
           this.$bvModal.show('studReqCourseLoadModal');
           this.checked="primary"
         } else {
-          this.$parent.courseLoad.selectedCourseLoad = 'Full-time or Part-time';
-          this.$parent.selectedCriteria.courseLoad = false;
+          this.$parent.requirement.courseLoad.selectedCourseLoad = 'Full-time or Part-time';
+          this.$parent.requirement.courseLoad.importance = 0;
+          this.$parent.requirement.selectedCriteria.courseLoad.selected = false;
           this.checked="secondary"
         }
       },
       returnData(bvModalEvt) {
         bvModalEvt.preventDefault()
           
-        this.$parent.courseLoad.selectedCourseLoad = this.courseLoad;
-        this.$parent.courseLoad.importance = this.importance;
-        this.$parent.selectedCriteria.courseLoad = true;
+        this.$parent.requirement.courseLoad.selectedCourseLoad = this.courseLoad;
+        this.$parent.requirement.courseLoad.importance = this.$refs['importSlider'].getImportance();
+        this.$parent.requirement.selectedCriteria.courseLoad.selected = true;
 
         this.$nextTick(()=>{
           this.$bvModal.hide('studReqCourseLoadModal');

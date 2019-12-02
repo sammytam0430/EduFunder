@@ -1,9 +1,9 @@
 <template>
   <b-container>
-    <b-button @click="studyYearSelected()" value="StudyYear" :variant="checked"> Year of study </b-button>
+    <b-button @click="studyYearSelected()" value="StudyYear" :variant="checked"> Year of Study </b-button>
     <b-modal id="studReqStudyYearModal" ref="modelProvince" title="Year of Study"  
       @ok="returnData" @close="closeModal" @cancel="closeModal">
-        <p>Select perferred year of study:</p>
+        <p>Select perferred minimum year of study:</p>
         <b-form-radio-group id="studyYear" v-model="studyYear" class="mb-4">
                 <b-row class = "text-center">
                     <b-col>
@@ -20,7 +20,7 @@
                     </b-col>
                 </b-row>
             </b-form-radio-group>
-        <importanceSlider />
+        <importanceSlider ref="importSlider" />
     </b-modal>
   </b-container>
 </template>
@@ -38,7 +38,7 @@
       return {
         checked: "secondary",
         selected: false,
-        studyYear: '',
+        studyYear: 'Did not specify',
         importance: 0
       }
     },
@@ -50,17 +50,18 @@
           this.$bvModal.show('studReqStudyYearModal');
           this.checked="primary"
         } else {
-          this.$parent.studyYear.selectedStudyYear = 'Any Year';
-          this.$parent.selectedCriteria.studyYear = false;
+          this.$parent.requirement.studyYear.selectedStudyYear = 'Did not specify';
+          this.$parent.requirement.studyYear.importance = 0;
+          this.$parent.requirement.selectedCriteria.studyYear.selected = false;
           this.checked="secondary"
         }
       },
       returnData(bvModalEvt) {
         bvModalEvt.preventDefault()
           
-        this.$parent.studyYear.selectedStudyYear = this.studyYear;
-        this.$parent.studyYear.importance = this.importance;
-        this.$parent.selectedCriteria.studyYear = true;
+        this.$parent.requirement.studyYear.selectedStudyYear = this.studyYear;
+        this.$parent.requirement.studyYear.importance = this.$refs['importSlider'].getImportance();
+        this.$parent.requirement.selectedCriteria.studyYear.selected = true;
 
         this.$nextTick(()=>{
           this.$bvModal.hide('studReqStudyYearModal');
@@ -73,9 +74,6 @@
           this.$nextTick(()=>{
           this.$bvModal.hide('studReqStudyYearModal');
         })
-      },
-      getGenderImportance(value) {
-        this.importance = value;
       }
     }
   };

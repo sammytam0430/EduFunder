@@ -5,7 +5,7 @@
       @ok="returnData" @close="closeModal" @cancel="closeModal">
         <p>Select perferred gender:</p>
         <b-form-radio-group id="gender" v-model="gender" class="mb-4">
-                <b-row class = "text-center">
+                <b-row class = "text-center mb-2">
                     <b-col>
                         <b-form-radio value="Male">Male</b-form-radio>
                     </b-col>
@@ -13,8 +13,15 @@
                         <b-form-radio value="Female">Female</b-form-radio>
                     </b-col>
                 </b-row>
+                <b-row class = "text-right">
+                  <b-col>
+                        <b-form-radio value="Male or Female">Does not matter</b-form-radio>
+                  </b-col>
+                  <b-col>
+                  </b-col>
+                </b-row>
             </b-form-radio-group>
-        <importanceSlider />
+        <importanceSlider ref="importSlider"/>
     </b-modal>
   </b-container>
 </template>
@@ -32,7 +39,7 @@
       return {
         checked: "secondary",
         selected: false,
-        gender: '',
+        gender: 'Male or Female',
         importance: 0
       }
     },
@@ -44,17 +51,18 @@
           this.$bvModal.show('studReqGenderModal');
           this.checked="primary"
         } else {
-          this.$parent.gender.selectedGender = 'Male or Female';
-          this.$parent.selectedCriteria.gender = false;
+          this.$parent.requirement.gender.selectedGender = 'Male or Female';
+          this.$parent.requirement.gender.importance = 0;
+          this.$parent.requirement.selectedCriteria.gender.selected = false;
           this.checked="secondary"
         }
       },
       returnData(bvModalEvt) {
         bvModalEvt.preventDefault()
           
-        this.$parent.gender.selectedGender = this.gender;
-        this.$parent.gender.importance = this.importance;
-        this.$parent.selectedCriteria.gender = true;
+        this.$parent.requirement.gender.selectedGender = this.gender;
+        this.$parent.requirement.gender.importance = this.$refs['importSlider'].getImportance();
+        this.$parent.requirement.selectedCriteria.gender.selected = true;
 
         this.$nextTick(()=>{
           this.$bvModal.hide('studReqGenderModal');
