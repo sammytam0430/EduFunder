@@ -5,16 +5,23 @@
             </b-col>
             <b-col sm="3">
                 <div>
-                    <b-form-select v-model="selected" :options="ethnicities"></b-form-select>
+                    <b-form-select :options="ethnicities"
+                        v-model="$v.ethnicityValue.$model"
+                        :state="$v.ethnicityValue.$dirty ? !$v.ethnicityValue.$error : null" 
+                    ></b-form-select>
                 </div>
             </b-col>
     </b-row>
 </template>
 <script>
+import { validationMixin } from 'vuelidate'
+import { required} from 'vuelidate/lib/validators'
+
 export default{
-    name: "studyFieldDD",
+    mixins: [validationMixin],
     data(){
         return{
+        ethnicityValue: null,
         ethnicities:[
             { value:"African", text:"African"},
             { value:"American", text:"American"},
@@ -38,6 +45,20 @@ export default{
             { value:"South African", text:"South"},
 
         ]
+        }
+    },
+    validations:{
+        ethnicityValue:{
+            required
+        }
+    },
+    methods:{
+        check(){
+            this.$v.ethnicityValue.$touch();
+            return !this.$v.ethnicityValue.$invalid;
+        },
+        getEthnicity(){
+            return this.ethnicityValue;
         }
     }
 }

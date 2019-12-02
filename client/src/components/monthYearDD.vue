@@ -3,39 +3,56 @@
   <b-row>
     <b-col cols="6">
       <div class="months">
-        <b-form-select v-model="selected" :options="months"></b-form-select>
+        <b-form-select v-model="$v.monthValue.$model"
+          :state="$v.monthValue.$dirty ? !$v.monthValue.$error : null" 
+          :options="months"></b-form-select>
+          <b-form-invalid-feedback id="input-1-live-feedback">
+          Select a month
+        </b-form-invalid-feedback>
       </div>
       </b-col>
-      <b-col cols="6">
+      <b-col cols="6" class="pr">
       <div class="years">
-        <b-form-select v-model="selected" :options="years"></b-form-select>
+        <b-form-select 
+         v-model="$v.yearValue.$model"
+          :state="$v.yearValue.$dirty ? !$v.yearValue.$error : null" 
+        :options="years"></b-form-select>
+        <b-form-invalid-feedback id="input-1-live-feedback">
+          Select a year
+        </b-form-invalid-feedback>
       </div>
       </b-col>
-    </b-row>
-    </div>
+  </b-row>
+</div>
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate'
+import { required} from 'vuelidate/lib/validators'
+
 export default{
+  mixins: [validationMixin],
    data() {
       return {
+        monthValue: null,
+        yearValue: null,
         months:[
-          { value: '1980', text: 'Month'},
-          { value: 'Jan', text: 'January'},
-          { value: 'Feb', text: 'Feburary'},
-          { value: 'Mar', text: 'March'},
-          { value: 'Apr', text: 'April'},
-          { value: 'May', text: 'May'},
-          { value: 'June', text: 'June'},
-          { value: 'July', text: 'July'},
-          { value: 'Aug', text: 'August'},
-          { value: 'Sept', text: 'Sept'},
-          { value: 'Oct', text: 'Oct'},
-          { value: 'Nov', text: 'Nov'},
-          { value: 'Dec', text: 'Dec'}
+          { value: null, text: ''},
+          { value: 'January', text: 'Jan '},
+          { value: 'Feburary', text: 'Feb '},
+          { value: 'March', text: 'Mar '},
+          { value: 'April', text: 'Apr '},
+          { value: 'May', text: 'May '},
+          { value: 'June', text: 'June '},
+          { value: 'July', text: 'July '},
+          { value: 'August', text: 'Aug '},
+          { value: 'Sept', text: 'Sept '},
+          { value: 'Oct', text: 'Oct '},
+          { value: 'Nov', text: 'Nov '},
+          { value: 'Dec', text: 'Dec '}
         ],
         years:[
-          { value: null, text: 'Year'},
+          { value: null, text: ''},
           { value: '1980', text: '1980'},
           { value: '1981', text: '1981'},
           { value: '1982', text: '1982'},
@@ -73,9 +90,42 @@ export default{
           { value: '2015', text: '2015'},
           { value: '2016', text: '2016'},
           { value: '2017', text: '2017'},
-          { value: '2018', text: '2018'},          
+          { value: '2018', text: '2018'},
+          { value: '2019', text: '2019'},
+          { value: '2020', text: '2020'},
+          { value: '2021', text: '2021'},
+          { value: '2022', text: '2022'},
+          { value: '2023', text: '2023'},
+          { value: '2024', text: '2024'},
+          { value: '2025', text: '2025'},
+          { value: '2026', text: '2026'},
+          { value: '2027', text: '2027'},
+          { value: '2028', text: '2028'},
         ]
       }
+   },
+   validations:{
+     monthValue:{
+       required
+     },
+     yearValue:{
+       required
+     }
+   },
+   methods:{
+     check(){
+       this.$v.monthValue.$touch();
+       this.$v.yearValue.$touch();
+      //  console.log(!this.$v.monthValue.$invalid);
+      //  console.log(!this.$v.yearValue.$invalid);
+       return !this.$v.monthValue.$invalid && !this.$v.yearValue.$invalid;
+     },
+     getMonth(){
+       return this.monthValue;
+     },
+     getYear(){
+       return this.yearValue;
+     }
    }
 }
 </script>

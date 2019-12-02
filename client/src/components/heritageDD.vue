@@ -5,16 +5,22 @@
             </b-col>
             <b-col sm="3">
                 <div>
-                    <b-form-select v-model="selected" :options="heritages"></b-form-select>
+                    <b-form-select 
+                     v-model="$v.heritageValue.$model"
+                    :state="$v.heritageValue.$dirty ? !$v.heritageValue.$error : null" 
+                    :options="heritages"></b-form-select>
                 </div>
             </b-col>
     </b-row>
 </template>
 <script>
+import { validationMixin } from 'vuelidate'
+import { required} from 'vuelidate/lib/validators'
 export default{
-    name: "studyFieldDD",
+    mixins: [validationMixin],
     data(){
         return{
+        heritageValue: null,
         heritages:[
             { value:"Afghanistan", text:"Afghanistan"},
             { value:"Argentina", text:"Argentina"},
@@ -57,6 +63,20 @@ export default{
             { value:"South Africa", text:"South Africa"},
             { value:"Spain", text:"Spain"}
         ]
+        }
+    },
+    methods:{
+        check(){
+            this.$v.heritageValue.$touch();
+            return !this.$v.heritageValue.$invalid;
+        },
+        getHeritage(){
+            return this.heritageValue;
+        }
+    },
+    validations:{
+        heritageValue:{
+            required
         }
     }
 }

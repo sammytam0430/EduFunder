@@ -1,10 +1,11 @@
 <template>
-    <form-wizard @on-complete="onComplete">
+    <form-wizard @on-complete="validate3">
         <h5 id="content-1-title" slot="title">
             Creat your campaign!
         </h5>
     <!--Biography-->
     <!-- :before-change="()=>validate()" -->
+<<<<<<< HEAD
     <tab-content title="Tell us about yourself"> 
         <div class="content-1">
         <b-row>
@@ -104,9 +105,14 @@
           </b-container>
         </b-row>
       </div>
+=======
+    <tab-content title="Tell us about yourself" :before-change="()=>validate()"> 
+        <studentCampaignTab1 ref='tab-content-1' @getTab1='getData'/>
+>>>>>>> c4f3d83c524761f5abcfaff578433093659826a7
     </tab-content>
 
     <!--Status information-->
+<<<<<<< HEAD
     <!-- :before-change="()=>validate()" -->
     <tab-content title="Status">
       <div class="content-2">
@@ -295,10 +301,16 @@
             </b-col>
         </b-row>        
         </div>
+=======
+    <!-- :before-change="()=>validate2()" -->
+    <tab-content title="Status" :before-change="()=>validate2()">
+        <studentCampaignTab2 ref="tab-content-2" @getTab2='getData'/>
+>>>>>>> c4f3d83c524761f5abcfaff578433093659826a7
     </tab-content>
 
     <!--Set your campaign!-->
     <tab-content title="Set your campaign!">
+<<<<<<< HEAD
       <div class="content-3">
         <b-row class="my-4">
           <b-col cols="4" class="text-right">
@@ -389,6 +401,9 @@
           </b-col>
         </b-row>
       </div>
+=======
+        <studentCampaignTab3 ref="tab-content-3" @getTab3='getData'/>
+>>>>>>> c4f3d83c524761f5abcfaff578433093659826a7
     </tab-content>
   </form-wizard>
 </template>
@@ -399,157 +414,47 @@ import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 import 'animate.css/animate.min.css'
 import { validationMixin } from 'vuelidate'
 import { required, alpha, maxLength, numeric} from 'vuelidate/lib/validators'
+import studentCampaignTab1 from "@/components/studentCampaignTab1.vue"
+import studentCampaignTab2 from "@/components/studentCampaignTab2.vue"
+import studentCampaignTab3 from "@/components/studentCampaignTab3.vue"
 
 
 export default{
     mixins: [validationMixin],
     data(){
         return{
-            tab1:{
-                DescriptionText: null,
-                educationText: null,
-                campaignTitle: null,
-                biographyText: null,
-                goalText: null
-            },
-            tab2:{
-                achievementText: null,
-                achievementText1: null,
-                achievementText2: null,
-                helpText: null,
-                helpText1: null,
-                helpText2: null,
-                hobbyText:null,
-                hobbyText1: null,
-                hobbyText2: null,
-                educationCost: null,
-                saving:null
-            },
-            tab3:{
-                fundingGoalAmount: null,
-                fundingDuration: null,
-                selectDuration: null
-            },
-            selected: [],
-            endMethod:[
-                {value:null, text:"Target Goal"},
-                {value:'a', text:"Target Date"},
-                {value:'b', text:"Target Date & Goal"},
-                {value:'c', text:"Campaign will not end"},
-            ],
-            country:[
-                {value:null, text:"Choose an Option"},
-                {value:'ab', text:"Canada"},
-                {value:'bd', text:"United States"},
-            ],
-            options:[
-                {id: 'Enrolled', value:'Enrolled'},
-                {id: 'Applied', value:'Applied'}
-            ],
-            preparation:[
-                {id: 'Scholarship & Grants', value:'scholarshipAndGrants'},
-                {id: 'Parents', value:'parents'},
-                {id: 'Part-Time work', value:'partTimeWork'},
-                {id: 'others', value:'others'},
-            ],
-            donations:[
-                {id:'Tuition', value:'tuition'},
-                {id:'Room & Board', value:'roomAndBoard'},
-                {id:'Book & Supplies', value:'bookAndSupplies'},
-                {id:'Transportation', value:'transportation'},
-            ]
+            formData: null,
         }
     },
     components: {
     FormWizard,
     TabContent,
-    },
-    validations:{
-        tab1:{
-            DescriptionText:{
-                required,
-                alpha,
-                maxLength: maxLength(100)
-            },
-            educationText:{
-                required,
-                alpha,
-                maxLength: maxLength(250)
-            },
-            campaignTitle:{
-                required,
-                alpha
-            },
-            biographyText:{
-                required,
-                alpha,
-                maxLength: maxLength(250)
-            },
-            goalText:{
-                required,
-                alpha,
-                maxLength: maxLength(250)
-            }
-        },
-        tab2:{
-            achievementText:{
-                required
-            },
-            achievementText1:{
-                required
-            },
-            achievementText2:{
-                required
-            },
-            helpText:{
-                required
-            },
-            helpText1:{
-                required
-            },
-            helpText2:{
-                required
-            },
-            hobbyText:{
-                required,
-            },
-            hobbyText1:{
-                required
-            },
-            hobbyText2:{
-                required
-            },
-            educationCost:{
-                required
-            },
-            saving:{
-                required
-            }
-        },
-        tab3:{
-            fundingGoalAmount:{
-                required,
-                numeric
-            },
-            fundingDuration:{
-                required,
-                numeric
-            },
-            selectDuration:{
-                required
-            }
-        }
+    studentCampaignTab1,
+    studentCampaignTab2,
+    studentCampaignTab3
     },
     methods:{
+      getData(tabContent, isValid){
+         if(isValid){
+           console.log("hello world");
+           this.formData = Object.assign({}, this.formData, tabContent);
+         } 
+      },
       validate() {
-      this.$v.tab1.$touch();
-      this.$v.tab2.$touch();
-      var isValid = !this.$v.tab1.$invalid;
-      return isValid
-        },
-      onComplete: function() {
-        alert('Yay. Done!');
+        return this.$refs['tab-content-1'].check();
+      },
+      validate2(){
+          return this.$refs['tab-content-2'].check();
+      },
+      validate3(){
+        console.log("hello World");
+        if (this.$refs['tab-content-3'].check()){
+            this.$refs['tab-content-3'].check();
+            alert("hello World");
+        } else {
+        alert("error alert");
         }
+      }
     }
 }
 </script>
