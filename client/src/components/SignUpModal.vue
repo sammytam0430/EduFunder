@@ -32,10 +32,14 @@
       <b-form-group id="email-group" label="Email" label-for="email">
         <b-form-input id="email" v-model="signup.email" type="email" required
           placeholder="example@google.com"></b-form-input>
-
       </b-form-group>
+
       <b-form-group id="password-group" label="Password" label-for="password">
         <b-form-input id="password" v-model="signup.password" type="password" required></b-form-input>
+      </b-form-group>
+
+      <b-form-group id="password-group" label="Confirm Password" label-for="confirm">
+        <b-form-input id="confirm" v-model="confirm" type="password" required></b-form-input>
       </b-form-group>
 
       <b-button class="w-100 mt-3" type="submit" variant="primary">Sign Up</b-button>
@@ -69,8 +73,9 @@
           userType: "",
           name: "",
           email: "",
-          password: ""
+          password: "",
         },
+        confirm: "",
         showAlert: false,
         show: this.$route.meta.showSignUp
       };
@@ -92,7 +97,13 @@
     methods: {
       // create user in db
       async createAccount() {
-        if (this.signup.userType) {
+        if (!this.signup.userType) {
+          this.response.message = "Please select a user type";
+          this.showAlert = true;          
+        } else if (this.signup.password !== this.confirm) {
+          this.response.message = "Passwords do not match";
+          this.showAlert = true;          
+        } else {
           const response = await UsersService.createUser(this.signup);
           this.response = response.data;
           this.showAlert = true;
@@ -104,9 +115,6 @@
               this.$router.push("ProfileD");
             }
           }
-        } else {
-          this.response.message = "Please select a user type";
-          this.showAlert = true;
         }
       },
       student: function () {

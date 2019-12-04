@@ -68,6 +68,7 @@ export default {
       if (this.response.success) {
         this.$session.start();
         this.$session.set("currentUser", this.response.userID);
+        this.$session.set("userType", this.response.userType);
         this.$router.push("campaignGallery");
       } else {
         this.showAlert = true;

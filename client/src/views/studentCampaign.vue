@@ -60,10 +60,20 @@ export default{
       },
       validate3(){
         if (this.$refs['tab-content-3'].check()){
-            this.$refs['tab-content-3'].check();
-            alert("hello World");
+            this.$bvToast.toast("New campaign created", {
+                title: "Notification",
+                toaster: "b-toaster-bottom-right",
+                autoHideDelay: 5000,
+                appendToast: true
+            });
+            this.$router.push("campaignGallery");
         } else {
-        alert("error alert");
+            this.$bvToast.toast("Please make sure you enter all inputs", {
+                title: "Notification",
+                toaster: "b-toaster-bottom-right",
+                autoHideDelay: 5000,
+                appendToast: true
+            });
         }
       }
     }

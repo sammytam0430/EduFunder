@@ -5,45 +5,22 @@
     </b-navbar-brand>
     <b-navbar-toggle target="nav-collapse" class="ml-auto"></b-navbar-toggle>
     <b-collapse id="nav-collapse" v-model="expanded" is-nav>
-      <b-navbar-nav>
-        <!-- <b-nav-item class="navItem">How it works</b-nav-item>
-        <b-nav-item class="navItem">Students</b-nav-item>
-        <b-nav-item class="navItem">Scholarships</b-nav-item> -->
-      </b-navbar-nav>
       <b-navbar-nav v-if="show" class="ml-auto">
         <b-nav-item>
-          <router-link :to="{path: '/dashboard'}">
-            <font-awesome-icon id="dashboard" size="lg" fixed-width icon="columns"/>
-            <span v-if="expanded" class="ml-2">Dashboard</span>
-            <b-tooltip v-else target="dashboard" title="Dashboard" placement="bottom"></b-tooltip>
+          <span>You're logged in as a {{ this.$session.get('userType') }}</span>
+        </b-nav-item>
+        <b-nav-item v-if="isStudent">
+          <router-link :to="{path: '/campaignForm'}">
+            <font-awesome-icon id="campaignFrom" size="lg" fixed-width icon="plus"/>
+            <span v-if="expanded" class="ml-2">Campaign Form</span>
+            <b-tooltip v-else target="campaignFrom" title="Campaign From" placement="bottom"></b-tooltip>
           </router-link>
         </b-nav-item>
-        <b-nav-item>
-          <router-link :to="{path: '/events'}">
-            <font-awesome-icon id="events" size="lg" fixed-width icon="th-list"/>
-            <span v-if="expanded" class="ml-2">Events</span>
-            <b-tooltip v-else target="events" title="Events" placement="bottom"></b-tooltip>
-          </router-link>
-        </b-nav-item> 
-        <b-nav-item>
-          <router-link :to="{path: '/create'}">
-            <font-awesome-icon id="create" size="lg" fixed-width icon="plus"/>
-            <span v-if="expanded" class="ml-2">Create Event</span>
-            <b-tooltip v-else target="create" title="Create Event" placement="bottom"></b-tooltip>
-          </router-link>
-        </b-nav-item>
-        <b-nav-item>
-          <router-link :to="{path: '/friends'}">
-            <font-awesome-icon id="friends" size="lg" fixed-width icon="user-friends"/>
-            <span v-if="expanded" class="ml-2">Friends</span>
-            <b-tooltip v-else target="friends" title="Friends" placement="bottom"></b-tooltip>
-          </router-link>
-        </b-nav-item>
-        <b-nav-item>
-          <router-link :to="{path: '/user/' + this.$session.get('currentUser')}">
-            <font-awesome-icon id="profile" size="lg" fixed-width icon="user-graduate"/>
-            <span v-if="expanded" class="ml-2">Profile</span>
-            <b-tooltip v-else target="profile" title="Profile" placement="bottom"></b-tooltip>
+        <b-nav-item v-else>
+          <router-link :to="{path: '/scholarshipForm'}">
+            <font-awesome-icon id="scholarshipForm" size="lg" fixed-width icon="plus"/>
+            <span v-if="expanded" class="ml-2">Scholarship Form</span>
+            <b-tooltip v-else target="scholarshipForm" title="Scholarship From" placement="bottom"></b-tooltip>
           </router-link>
         </b-nav-item>
         <b-nav-item>
@@ -79,14 +56,21 @@ export default {
   watch: {
     $route() {
       this.show = this.$session.exists();
+      this.userType = this.$session.get('userType')
     }
   },
   data() {
     return {
       show: this.$session.exists(),
       expanded: false,
-      scrolled: false
+      scrolled: false,
+      userType: this.$session.get('userType'),
     };
+  },
+  computed: {
+    isStudent() {
+      return this.userType === "student";
+    }
   },
   methods: {
     // event handler for window vertical scroll

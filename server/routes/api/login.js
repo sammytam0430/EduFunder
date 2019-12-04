@@ -22,7 +22,8 @@ router.post("/", (req, res) => {
           status: 200,
           success: true,
           message: "OK",
-          userID: data[0].userID
+          userID: data[0].userID,
+          userType: data[0].userType
         });
       } else {
         res.send({

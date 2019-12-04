@@ -17,23 +17,23 @@
 </template>
 
 <script>
-    import {FormWizard, TabContent} from 'vue-form-wizard'
-    import 'vue-form-wizard/dist/vue-form-wizard.min.css'
-    import ScholarshipFormBasicInfo from "@/components/ScholarshipFormBasicInfo.vue";
-    import ScholarshipFormStudentReq from "@/components/ScholarshipFormStudentReq.vue";
-    import ScholarshipFormReview from "@/components/ScholarshipFormReview.vue";
-  export default {
-      components: {
-        FormWizard,
-        TabContent,
-        ScholarshipFormBasicInfo,
-        ScholarshipFormStudentReq,
-        ScholarshipFormReview
-        },
+import {FormWizard, TabContent} from 'vue-form-wizard'
+import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+import ScholarshipFormBasicInfo from "@/components/ScholarshipFormBasicInfo.vue";
+import ScholarshipFormStudentReq from "@/components/ScholarshipFormStudentReq.vue";
+import ScholarshipFormReview from "@/components/ScholarshipFormReview.vue";
+export default {
+    components: {
+    FormWizard,
+    TabContent,
+    ScholarshipFormBasicInfo,
+    ScholarshipFormStudentReq,
+    ScholarshipFormReview
+    },
     data() {
-      return {  
-          formData: {}
-      }
+        return {  
+            formData: {}
+        }
     },
     methods: {
         validateBasicInfo() {
@@ -50,14 +50,24 @@
         },
         createScholarship() {
             if(this.$refs['review'].comfirmed()) {
-                //send data to database?
-                alert('Yay. Done!');
+                this.$bvToast.toast("New scholarship created", {
+                    title: "Notification",
+                    toaster: "b-toaster-bottom-right",
+                    autoHideDelay: 5000,
+                    appendToast: true
+                });
+                this.$router.push("campaignGallery");
             } else {
-                alert('hey! Not done');
+                this.$bvToast.toast("Please make sure you enter all inputs", {
+                    title: "Notification",
+                    toaster: "b-toaster-bottom-right",
+                    autoHideDelay: 5000,
+                    appendToast: true
+                });
             }
         }
     }
-  }
+}
 </script>
 
 <style scoped>

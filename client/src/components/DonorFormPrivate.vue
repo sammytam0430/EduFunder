@@ -35,33 +35,6 @@
                 Warning: Linkedin Profile needs to be in url
             </b-form-invalid-feedback>
         </b-form-group>
-<!-- 
-        <b-form-group
-            id = "input-ProfilePic"
-            label = "Profile Image: "
-            label-for = ""
-            label-cols-lg = "3"
-        >
-            <b-form-file
-              v-model="file"
-              placeholder="Choose a file or drop it here..."
-              drop-placeholder="Drop file here..."
-            ></b-form-file>
-        </b-form-group>
-
-        <b-form-group
-            id = "input-DriveLicense"
-            label = "Driver License: "
-            label-for = ""
-            label-cols-lg = "3"
-        >
-           <b-form-file
-              v-model="file"
-              placeholder="Choose a file or drop it here..."
-              drop-placeholder="Drop file here..."
-            ></b-form-file>
-        </b-form-group> -->
-
         <b-form-group
             id = "contactPrivate"
             label = "Contact: "
@@ -136,8 +109,7 @@
         <b-row>
           <b-col ></b-col>
           <b-col ></b-col>
-          <b-col ><b-button class = "w-100" type="submit" variant="primary">Save</b-button></b-col>
-          <!-- <b-col ><b-button class = "w-100"  type="cancel" variant="danger">Cancel</b-button></b-col> -->
+          <b-col ><b-button class = "w-100" type="submit" variant="primary">Finish</b-button></b-col>
         </b-row>
     </b-form>
 </template>
@@ -192,13 +164,22 @@ export default {
         onSubmit() {
             this.$v.donorPrivate.$touch();
             if (this.$v.donorPrivate.$anyError) {
-            return
+                this.$bvToast.toast("Profile created successfully", {
+                    title: "Notification",
+                    toaster: "b-toaster-bottom-right",
+                    autoHideDelay: 5000,
+                    appendToast: true
+                    });
+                this.$router.push("campaignGallery");
+            } else {
+                this.$bvToast.toast("Please make sure you enter all inputs", {
+                    title: "Notification",
+                    toaster: "b-toaster-bottom-right",
+                    autoHideDelay: 5000,
+                    appendToast: true
+                });
             }
         }
-        // ,
-        // onReset() {
-            
-        // }
     }
 }
 </script>

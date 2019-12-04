@@ -54,22 +54,22 @@ export default new Router({
       component: studentProfile
     }, 
     {
-      path: "/ProfileD",
+      path: "/profileD",
       name: "ProfileDonor",
       component: ProfileDonor
     },
     {
-      path: "/ScholarshipForm",
+      path: "/scholarshipForm",
       name: "ScholarshipForm",
       component: ScholarshipForm
     },
     {
-      path: "/CampaignForm",
+      path: "/campaignForm",
       name: "StudentCampaign",
       component: studentCampaign
     },
     {
-      path: "/CampaignGallery",
+      path: "/campaignGallery",
       name: "campaignGallery",
       component: campaignGallery
     },
