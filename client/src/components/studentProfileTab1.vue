@@ -153,18 +153,6 @@
     <div>
       <b-row class="my-4 text-center">
     <b-col cols="12">
-    <b-form-checkbox
-      id="checkbox-1"
-      name="checkbox-1"
-
-      value="accepted"
-      unchecked-value="not_accepted"
-      v-model="confirm"
-      @onchange="this.$dirty"
-
-    >
-      I accept the terms and use statement
-    </b-form-checkbox>
     </b-col>
     </b-row>
     </div> 

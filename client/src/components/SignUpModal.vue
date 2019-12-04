@@ -109,6 +109,7 @@
           this.showAlert = true;
           if (this.response.success) {
             this.$session.set("currentUser", this.response.userID);
+            this.$session.set("userType", this.response.userType);
             if (this.signup.userType === "student") {
               this.$router.push("studentP");
             } else if (this.signup.userType === "donor") {
