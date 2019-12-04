@@ -108,6 +108,7 @@
           this.response = response.data;
           this.showAlert = true;
           if (this.response.success) {
+            this.$session.start();
             this.$session.set("currentUser", this.response.userID);
             this.$session.set("userType", this.response.userType);
             if (this.signup.userType === "student") {
