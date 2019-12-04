@@ -170,20 +170,20 @@ export default {
         onSave() {
             this.$v.donorCorporate.$touch();
             if (this.$v.donorCorporate.$anyError) {
-                this.$bvToast.toast("Profile created successfully", {
-                title: "Notification",
-                toaster: "b-toaster-bottom-right",
-                autoHideDelay: 5000,
-                appendToast: true
-                });
-                this.$router.push("campaignGallery");
-            } else {
                 this.$bvToast.toast("Please make sure you enter all inputs", {
                 title: "Notification",
                 toaster: "b-toaster-bottom-right",
                 autoHideDelay: 5000,
                 appendToast: true
                 });
+            } else {
+                this.$bvToast.toast("Profile created successfully", {
+                title: "Notification",
+                toaster: "b-toaster-bottom-right",
+                autoHideDelay: 5000,
+                appendToast: true
+                });
+                this.$router.push("campaignGallery");                
             }
         },
         onCancel() {

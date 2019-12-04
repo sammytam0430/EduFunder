@@ -164,6 +164,13 @@ export default {
         onSubmit() {
             this.$v.donorPrivate.$touch();
             if (this.$v.donorPrivate.$anyError) {
+                this.$bvToast.toast("Please make sure you enter all inputs", {
+                    title: "Notification",
+                    toaster: "b-toaster-bottom-right",
+                    autoHideDelay: 5000,
+                    appendToast: true
+                });
+            } else {
                 this.$bvToast.toast("Profile created successfully", {
                     title: "Notification",
                     toaster: "b-toaster-bottom-right",
@@ -171,13 +178,6 @@ export default {
                     appendToast: true
                     });
                 this.$router.push("campaignGallery");
-            } else {
-                this.$bvToast.toast("Please make sure you enter all inputs", {
-                    title: "Notification",
-                    toaster: "b-toaster-bottom-right",
-                    autoHideDelay: 5000,
-                    appendToast: true
-                });
             }
         }
     }
